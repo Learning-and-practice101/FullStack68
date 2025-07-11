@@ -121,6 +121,7 @@ run typeScript on terminal : <br>
 npm i -g pnpm  :(npm ขอ install package manager ตัวใหม่ที่ชื่อ (pnpm) -g Install แบบ global 
 เพราะอยากให้ pnpm มัน available ทุกๆ session ของ terminal )
 ```
+
 **step 2 on terminal**
 ```
 (npm init -y :(-y auto yes)
@@ -148,11 +149,11 @@ binary ตัวนี้ในการ run program สามารถ ใช�
 2.5 npx tsc src/index.ts --outDir dist
 #เอาไฟล์ js ที่ compile ไปอยู่ใน folder dist
 2.6 เวลาจะ run ก็ `node dist/index.js` แทน
-2.7 ถ้ารู้สึกว่ามันช้าไปก็ npx tsx src/index.ts
 2.7 ถ้ารู้สึกว่ามันช้าไปก็ `npx tsx src/index.ts`
 #tsx : ใช้ run type script บน node ตรงๆเราจะใช้ tsx (compile + runner)
 ✅
 ```
+
 **quick note**
 ```
 - behind the sence ของ VScode มันมี Typescript Language server protocol run ให้อยู๋แล้ว
@@ -165,7 +166,9 @@ binary ตัวนี้ในการ run program สามารถ ใช�
 - function มี argument ที่มันเปลี่ยนได้ แล้วมันก็เปลี่ยน behavior ใน function body ของเรา
 - แนะนำ power shell 7 power shell ที่มากับ windows คือ power shell 5
 ```
+
 <br>
+
 terminology >
 - revision : การแก้ไข <br>
 - LSP : Language server protocal --> typeScript <br>
