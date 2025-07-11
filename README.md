@@ -116,7 +116,7 @@ run typeScript on terminal : <br>
   - npm คือ package manager (npm มันช้า น่ารำคาญ) <br>
   - pnpm แทนตัว npm สามารถ สามารถ install อะไรเร็วๆได้ <br>
   - ข้อดี pnpm 1.download เร็วกว่า 2.มัน cast เอาไว้ <br>
-**step 1 install pnpm (cmd)** <br>
+**step 1 install pnpm (cmd)** 
 ```
 npm i -g pnpm  :(npm ขอ install package manager ตัวใหม่ที่ชื่อ (pnpm) -g Install แบบ global 
 เพราะอยากให้ pnpm มัน available ทุกๆ session ของ terminal )
@@ -124,7 +124,7 @@ npm i -g pnpm  :(npm ขอ install package manager ตัวใหม่ที�
 **step 2 on terminal**
 ```
 (npm init -y :(-y auto yes)
-#ได้ package.json ที่บอกว่า project มีรายละเอียดยังไงบ้าง
+#ได้ package.json ที่บอกว่า project มีรายละเอียดยังไงบ้าง 
 -> แต่สิ่งที่ไม่ชอบของ npm init -y คือ ต้อง พิมพ์ "type":"module", ตลอดเลย
 เพราะว่า npm init มันได้ package json รุ่นเก่า
 #รุ่นใหม่ เขาเปลี่ยน type เป็น module หมดแล้ว  (module = esm module เป็นการ import สิ่งต่างๆระหว่างไฟล์ ))
@@ -170,14 +170,14 @@ terminology >
 - revision : การแก้ไข <br>
 - LSP : Language server protocal --> typeScript <br>
 - activate : เปิดใช้งาน <br>
-- type by inference : มันจะรู้ type ของมันอยู่แล้ว
-- type by specificition : กำหนด type ให้มันเอง (keyword : type , interface)
-- interface : คล้ายกำหนด class definition แต่ไม่ใช้ class definition โดยตรง
-- literal string : ต้องชื่อนี้เท่านั้น
-- enforce : บังคับใช้
-- primitive type : field 
-- composite type : object
-- Library author : ผู้เขียนห้องสมุด
-- falsey : undefine , null , 0
-- future proof : หลักฐานในอนาคต
-- stylistic : โวหาร
+- type by inference : มันจะรู้ type ของมันอยู่แล้ว <br>
+- type by specificition : กำหนด type ให้มันเอง (keyword : type , interface) <br>
+- interface : คล้ายกำหนด class definition แต่ไม่ใช้ class definition โดยตรง <br>
+- literal string : ต้องชื่อนี้เท่านั้น <br>
+- enforce : บังคับใช้ <br>
+- primitive type : field  <br>
+- composite type : object <br>
+- Library author : ผู้เขียนห้องสมุด <br>
+- falsey : undefine , null , 0 <br>
+- future proof : หลักฐานในอนาคต <br>
+- stylistic : โวหาร <br>
