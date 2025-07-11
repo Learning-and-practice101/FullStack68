@@ -188,4 +188,4 @@ terminology >
 - Library author : ผู้เขียนห้องสมุด <br>
 - falsey : undefine , null , 0 <br>
 - future proof : หลักฐานในอนาคต <br>
-- stylistic : โวหาร <br>
+- stylistic : โวหาร  <br>
