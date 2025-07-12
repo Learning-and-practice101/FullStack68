@@ -232,4 +232,44 @@ change include
 -> "include": ["./src/**/*"] 
 ```
 
+quick note : 
+```
+- import { name } from "./lib.js"; // มันเป็น esm import ทั้งที่ file มันคือ .ts แต่มันคือ compile behind the scence
 
+- ถ้าอยากรู้ว่า community เขาใช้อะไรกันอยู่ https://github.com/tsconfig/bases
+use : `pnpm install @types/node @tsconfig/node-lts @tsconfig/node-ts`
+
+{
+  "extends": [
+    "@tsconfig/node-lts/tsconfig.json",
+    "@tsconfig/node-ts/tsconfig.json"
+  ],
+  "compilerOptions": {
+    "outDir": "./dist"
+  },
+  "include": ["./src/**/*"]
+}
+
+เอา code ด้านบนไปวางแทน tsconfig.js ลบอันเก่าออกให้หมด
+
+จะเห็นว่าสิ่งที่เขาแนะนำในปัจจุบัน จะอยู่ใน path : node_module / tsconfig / node-lts / tsconfig.json -> นั้นคือสิ่งที่เขาแนะนำในปัจจุบัน
+
+{
+  "extends": [
+    "@tsconfig/node-lts/tsconfig.json", //ตัวนี้คือตัวที่เขา extand เพิ่มขึ้นมา -> คุณกำลังใช้ recommended ts ในปัจจุบัน 
+    "@tsconfig/node-ts/tsconfig.json" //ตัวนี้คือ base -> layer แรกที่ทุกๆอันควรใช้ก่อน
+  ],
+  "compilerOptions": {
+    "outDir": "./dist" -> เปลี่ยนได้
+  },
+  "include": ["./src/**/*"] -> เปลี่ยนได้
+}
+
+```
+conclude : 
+  - ทำ config file esm old to new version
+    - หลังจากที่ 1.`npm init es6` 2.`pnpm install -D typescript tsx @types/node`
+    - `npx tsc --init` --> `pnpm install @types/node @tsconfig/node-lts @tsconfig/node-ts`
+    - `npx tsc --showConfig` เอาไว้ดู config file ด้านบน
+terminology :
+  - overwam : ล้น
