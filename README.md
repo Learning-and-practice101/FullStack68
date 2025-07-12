@@ -276,4 +276,36 @@ conclude :
 terminology :<br>
   - overwam : ล้น <br>
 ## Day 4
+
+**Next js**
 <img width="697" height="294" alt="image" src="https://github.com/user-attachments/assets/d0747d34-5456-4131-85b4-f04689e0cafc" />
+
+basic cmd : <br>
+  - cd \D: <br>
+  - code . <br>
+
+next step after create nextJs :
+ ``` 1. npm run dev (มันจะ run script ที่อยู่ใน package.json )
+  จะได้ localhost:3000 มาเรียบร้อย
+
+  step dev : next js
+  clean app -> src/app/globals.css ให้เหลือ แค่ @import "tailwindcss";
+  and clean up file page ลบตัว div ที่ return ออก
+
+  create component / Card.tsx (.tsx คือ file ที่เขียน JSX เป็น syntex พิเศษของ Reate ที่ทำให้เราสามารถ    เขียน javaScript และ html รวมกันได้ )
+  สรุป : type script ที่ใช้ Jsx ก็เลยเรียก tsx 
+  
+ ```
+<br>
+
+tsconfig.js
+```
+หา line นี้
+{
+  // ...
+  "paths": {
+    "@app/*": ["./src/app/*"], เวลา port อะไรที่อยู่ใน app มันจะมี @app อยู่ข้างหน้า เรียกว่า alias
+    "@components/*": ["./src/components/*"] เวลา port อะไรที่อยู่ใน app มันจะมี @app อยู่ข้างหน้า
+  }
+}
+```
