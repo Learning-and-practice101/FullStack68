@@ -189,3 +189,47 @@ terminology >
 - falsey : undefine , null , 0 <br>
 - future proof : หลักฐานในอนาคต <br>
 - stylistic : โวหาร  <br>
+- alternative : ทางเลือก
+
+## day 3
+[lecture_same_day_2](https://fullstack-68.github.io/lectures/src/T02_js_ts/T02.html#31)<br>
+
+terminel commandline : <br>
+  `npx tsc --showConfig` //จะบอกว่าไอ้ที่เรา edit tsconfig.js โดยรวมเราทำอะไรไปบ้าง หรือ สามารถ check <br>
+  ว่าเรากำลัง config และจะ compile file อะไรบ้าง จะได้ debug ได้
+
+**modify : tsconfig.sj** <br>
+  #เนื่องจากเราอยากให้ ts มัน flexibility มากขึ้น <br>
+  `npx tsc --init`
+  แล้วไปแก้ไข file tsconfig.js เช่น <br>
+
+change outdir
+```
+เราอยากให้ outdir หรือ folder ที่ compile ts ย้ายไปใน folder ที่เราต้องการ
+เราแค่ ctrl + F --> search "outdir" : เปลี่ยนไปใน folder ที่เราต้องการ "outDir": "./dist",
+---เพื่อเวลาที่เรา จะ compile ts -> js มันไม่ต้อง พิมพ์เยอะ แค่พิมพ์ `npx tsc` จบ มันจะ compile js ให้ทันที
+```
+
+change target 
+```
+เราสามารถ เปลี่ยน version typeScript ได้ 
+ctrl + F --> search "target" --> es2022
+```
+
+change module 
+```
+เราสามารถ เปลี่ยน version typeScript ได้ 
+ctrl + F --> search "module" --> nodenext (node next คืออยู๋กึ่งๆกลางๅ คืออะไร ที่เป็น commonJs มันก็
+อาจจะคงอยู๋ อะไรที่มันเป็น esm มันก็เปลี่ยนให้)
+```
+
+change include
+```
+เราไม่อยากให้ compiler ไปยุ่งกับอะไรที่ไม่ใช่ src code เราอยากเก็บอย่างอื่นไว้แต่ src code เปลี่ยนได้
+เวลาจะ compile ให้เอาเฉพาะ src อย่างเดียว
+
+เพิ่มเองด้านล่างสุดของ tsconfig.js 
+-> "include": ["./src/**/*"] 
+```
+
+
