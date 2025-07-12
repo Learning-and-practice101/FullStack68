@@ -191,7 +191,7 @@ terminology >
 - stylistic : โวหาร  <br>
 - alternative : ทางเลือก
 
-## day 3
+## Day 3
 [lecture_same_day_2](https://fullstack-68.github.io/lectures/src/T02_js_ts/T02.html#31)<br>
 
 terminel commandline : <br>
