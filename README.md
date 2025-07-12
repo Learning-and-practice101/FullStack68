@@ -196,9 +196,9 @@ terminology >
 
 terminel commandline : <br>
   `npx tsc --showConfig` //จะบอกว่าไอ้ที่เรา edit tsconfig.js โดยรวมเราทำอะไรไปบ้าง หรือ สามารถ check <br>
-  ว่าเรากำลัง config และจะ compile file อะไรบ้าง จะได้ debug ได้
+  ว่าเรากำลัง config และจะ compile file อะไรบ้าง จะได้ debug ได้ <br>
 
-**modify : tsconfig.sj** <br>
+### modify : tsconfig.js <br>
   #เนื่องจากเราอยากให้ ts มัน flexibility มากขึ้น <br>
   `npx tsc --init`
   แล้วไปแก้ไข file tsconfig.js เช่น <br>
