@@ -276,3 +276,4 @@ conclude :
 terminology :<br>
   - overwam : ล้น <br>
 ## Day 4
+<img width="697" height="294" alt="image" src="https://github.com/user-attachments/assets/d0747d34-5456-4131-85b4-f04689e0cafc" />
