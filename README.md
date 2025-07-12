@@ -269,8 +269,8 @@ use : `pnpm install @types/node @tsconfig/node-lts @tsconfig/node-ts`
 conclude : 
  ```
  - ทำ config file esm old to new version
-    - หลังจากที่ 1.`npm init es6` 2.`pnpm install -D typescript tsx @types/node`
-    - `npx tsc --init` --> `pnpm install @types/node @tsconfig/node-lts @tsconfig/node-ts`
+    - หลังจากที่ 1.`npm init es6` 2.`pnpm install -D typescript tsx @types/node` แล้วให้
+    - old `npx tsc --init` --> new version `pnpm install @types/node @tsconfig/node-lts @tsconfig/node-ts`
     - `npx tsc --showConfig` เอาไว้ดู config file ด้านบน
 ```
 terminology :<br>
