@@ -267,9 +267,12 @@ use : `pnpm install @types/node @tsconfig/node-lts @tsconfig/node-ts`
 
 ```
 conclude : 
-  - ทำ config file esm old to new version
+ ```
+ - ทำ config file esm old to new version
     - หลังจากที่ 1.`npm init es6` 2.`pnpm install -D typescript tsx @types/node`
     - `npx tsc --init` --> `pnpm install @types/node @tsconfig/node-lts @tsconfig/node-ts`
     - `npx tsc --showConfig` เอาไว้ดู config file ด้านบน
-terminology :
-  - overwam : ล้น
+```
+terminology :<br>
+  - overwam : ล้น <br>
+## Day 4
