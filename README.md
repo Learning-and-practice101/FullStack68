@@ -309,3 +309,74 @@ tsconfig.js
   }
 }
 ```
+
+## Day_5
+
+[Lecture_4](https://fullstack-68.github.io/lectures/src/T03_pf_db/T03.html) <br>
+
+สิ่งแรกของการทำโปรเจคคือ เลือก database <br>
+relational database : table (in lecture) <br>
+  - Protgest : คนใช้เยอะ ลูกเล่นเยอะ <br>
+  - MySql : ใช้ง่าย <br>
+NoSQL : ที่ไม่ใช่ table <br>
+  - MongoDB <br>
+<br>
+#### learn docker  
+##### Docker :
+```
+ก่อนที่จะเข้าใจ docker ให้เข้าใจคำว่า containers ก่อน 
+containers คือ - virtualization tachnology : วิธีที่ทำให้เราสามารถสร้างสภาพแวดล้อมที่แตกแยกออกมา
+จากสภาพแวดล้อมอื่น เพราะเวลา run app มันต้องการ สภาพแวดล้อม เช่น app เป็น node ts มันก็ต้องดาร os , js runtime ts compile
+เพราะงั้น ถ้าเกิดเอาทุก app มา run ในเครื่องพร้อมกันเจ้งแน่นอน เพราะงั้นเวลา run app in server เราควรมี
+isolated eviroment 
+
+isolated eviroment : virtual machine , containers
+
+ถ้าเราไม่ได้มี req ที่สูง มากเราใช้ containers ดีกว่า เพราะมัน portable(save enniroment in USB stick)
+แต่จริงเขามักจะ upload ขึ้นไปบน cloud หรือ registry
+
+Consistency : เพื่อนเรา load blueprint ของ containers เรามาใช้มันก็ work -> work everywhere
+
+easy deploy : run บน server ง่าย 
+
+More efficient :  virtual machine -> ลง os ใหม่ทุกอย่างใหม่หมด แต่ถ้าเป็น container มันแชร์ operating
+system kernel มัน share resource ได้ดีกว่า
+
+docker : คือ 1 ใน provider ที่ทำระบบ containers ให้คุณมันเป็น reading player
+podman : ก็สามารถทำ container ได้เหมือนกัน 
+```
+##### concept : <br>
+<img width="1468" height="840" alt="image" src="https://github.com/user-attachments/assets/50896608-3e00-4bfd-99bf-65aaa2989f8c" /><br>
+```
+conputer : เวลา run web มันก็ run อยู่บน container บน server อันนึง container นี้เป็น separate enviroment isolated enviroment ข้างในมี Node js อะไรเค็มไปหมด
+
+container : มาจาก plueprint ที่เรีนกว่า image : คำสั่ง
+
+image : 1 image สามารถ generate container ได้มากกว่า 1 อัน สามารถ spon แอป กากๆ ขึ้นมากี่อันก็ได้ 
+แล้วมันก็มี isolate eviroment ของมันหมดเลย
+
+Registry : ที่เก็บ image เราจะให้ docker hub เป็นที่เเก็บ docker image 
+
+เราจะ run database ใน docker container
+```
+
+##### step create project docker : 
+```
+1. create file .env (ห้ามเอา file นี้ขึ้น github เด็ดขาด อาจจะถูกไล่ออกได้!!! )
+2. .gitignore : file ที่บอกว่าอะไรจะไม่ขึ้นไปบน github
+3. docker-compose.yml : ห้ามเคาะมั่ว มันมี format ชัดเจน
+4. create folder _entrypoint :
+  create file : init.sh
+
+## bash มันจะ run มัน linux ซึ่ง line base มันคนล่ะ character กัน 
+<img width="152" height="118" alt="image" src="https://github.com/user-attachments/assets/14956c13-2fad-46a1-aa13-d5eefd6ce274" />
+เราต้อง make sure ว่ามันอยู่บน LF จริงๆ มันถึงจะ worl ใน linux เพราะเดี่ยวไฟล์ นี้จะถูก inject เข้าไปใน linux
+(carryage return) 
+
+5. docker compose up -d
+```
+ouick note : <br>
+github action : เปลี่ยน code บน github แล้วมันเปลี่ยน data บนเว็บจริงได้เลย <br>
+<br>
+terminology :<br>
+  
