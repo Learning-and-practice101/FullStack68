@@ -270,15 +270,17 @@ use : `pnpm install @types/node @tsconfig/node-lts @tsconfig/node-ts`
 }
 
 ```
-conclude : 
+terminology :<br>
+  - overwam : ล้น <br>
+  
+#### conclude : day 3 <br>
  ```
  - ทำ config file esm old to new version
     - หลังจากที่ 1.`npm init es6` 2.`pnpm install -D typescript tsx @types/node` แล้วให้
     - old `npx tsc --init` --> new version `pnpm install @types/node @tsconfig/node-lts @tsconfig/node-ts`
     - `npx tsc --showConfig` เอาไว้ดู config file ด้านบน
 ```
-terminology :<br>
-  - overwam : ล้น <br>
+
 ## Day 4
 
 **Next js**
@@ -314,7 +316,7 @@ tsconfig.js
 }
 ```
 
-#### conclude : <br>
+#### conclude : day 4 <br>
   - create project nextJs 
   - set up tsconfig in project nextjs
 
@@ -424,7 +426,7 @@ github action : เปลี่ยน code บน github แล้วมัน�
 <br>
 terminology :<br>
   
-#### conclude : <br>
+#### conclude : day 5 <br>
   - basic docker --> check work docker by dbeaver
   - set up file before use docker
   - cmd for docker
