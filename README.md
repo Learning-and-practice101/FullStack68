@@ -375,8 +375,42 @@ Registry : ที่เก็บ image เราจะให้ docker hub เ�
 เราต้อง make sure ว่ามันอยู่บน LF จริงๆ มันถึงจะ worl ใน linux เพราะเดี่ยวไฟล์ นี้จะถูก inject เข้าไปใน linux
 (carryage return) 
 
-5. docker compose up -d
+5. ไปตั้ง pass word ใน .env POSTGRES_PASSWORD=1234 (password ที่จะเป็น root password ของคุณ)
+POSTGRES_APP_PASSWORD=5678 (application password ที่เราจะได้แยก user กัน)
+
+6. docker volume prune -a (เมื่อกี้ ภาษามัน skip initialization ไปเฉพาะฉนั้นคุณจะไม่มี user ใช้)
+check in docker : /usr/local/bin/docker-entrypoint.sh: running /docker-entrypoint-initdb.d/init.sh (ถ้าเกิดไม่ขึ้นอันนี้จะไม่มี user ใช้)
+
+7. docker compose up -d (pull image ของ postgress มาจาก registry ที่ชื่อว่า docker hub )
 ```
+##### step test docker is work : DBeaverCE
+1.  add
+<img width="52" height="32" alt="image" src="https://github.com/user-attachments/assets/81b37790-8003-433e-8aa0-c98631d7fc73" />
+
+2. select Postgret
+<img width="725" height="373" alt="image" src="https://github.com/user-attachments/assets/c2ff891b-c42f-47b7-966c-e648ecd4cc58" />
+
+3. set up follow me : 
+<img width="372" height="277" alt="image" src="https://github.com/user-attachments/assets/94274397-f3f4-4621-bc19-2b3852f2ff23" /> <br>
+<img width="723" height="281" alt="image" src="https://github.com/user-attachments/assets/399a9c2c-c371-4a96-aabd-3b902a03c5e0" /> <br>
+<img width="910" height="764" alt="image" src="https://github.com/user-attachments/assets/0a3f5181-39e8-47be-b542-07311ea80c40" /> <br>
+<br>
+
+##### other : 
+
+  <img width="258" height="125" alt="image" src="https://github.com/user-attachments/assets/7712cba1-deab-4d7b-b11b-1360f1a84b4f" />
+container : application อะไร run อยู่ (เช่นตอนนี้คุณมีแอป database run อยู่เป็น postgret postgret เป็น <br>  container ถูกสร้างมาจาก image) <br>
+image : postgret image  <br>
+volumes : data <br>
+<br>
+ถ้าอยากจะ clean ทุกอย่างออกจากเครื่องต้อง clean สามอย่างนี้ <br>
+  HOW : <br>
+    - docker compose down : เอา container ลง / ออกไป <br>
+    - docker image prune -a : เอา image ออกไป <br>
+    - docker volume prune -a : เอา volume ออกไป <br>
+  ...ลบ completely <br>
+    
+    
 ouick note : <br>
 github action : เปลี่ยน code บน github แล้วมันเปลี่ยน data บนเว็บจริงได้เลย <br>
 <br>
