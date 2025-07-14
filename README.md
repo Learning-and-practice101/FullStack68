@@ -398,7 +398,7 @@ check in docker : /usr/local/bin/docker-entrypoint.sh: running /docker-entrypoin
 
 ##### other : 
 
-  <img width="258" height="125" alt="image" src="https://github.com/user-attachments/assets/7712cba1-deab-4d7b-b11b-1360f1a84b4f" />
+  <img width="258" height="125" alt="image" src="https://github.com/user-attachments/assets/7712cba1-deab-4d7b-b11b-1360f1a84b4f" /> <br>
 container : application อะไร run อยู่ (เช่นตอนนี้คุณมีแอป database run อยู่เป็น postgret postgret เป็น <br>  container ถูกสร้างมาจาก image) <br>
 image : postgret image  <br>
 volumes : data <br>
@@ -409,8 +409,8 @@ volumes : data <br>
     - docker image prune -a : เอา image ออกไป <br>
     - docker volume prune -a : เอา volume ออกไป <br>
   ...ลบ completely <br>
-    
-    
+<br>
+<br>
 ouick note : <br>
 github action : เปลี่ยน code บน github แล้วมันเปลี่ยน data บนเว็บจริงได้เลย <br>
 <br>
