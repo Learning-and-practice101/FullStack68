@@ -88,7 +88,7 @@ ESM = วิธีแบ่งโปรแกรมเป็นหลายไ�
 ใช้ในภาษา TypeScript ได้เต็มที่ และกลายเป็นมาตรฐานในปัจจุบัน<br>
 <br>
 
-#### conclude : day 1 ><br>
+#### conclude : day 1 <br>
   - create project by cmd
   - ESM asd config
   - Hello world in ts and js
@@ -191,7 +191,7 @@ terminology >
 - stylistic : โวหาร  <br>
 - alternative : ทางเลือก
 
-#### conclude : day 2 ><br>
+#### conclude : day 2 <br>
   - create project typescript 
   - writing typescript
     
