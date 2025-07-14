@@ -191,6 +191,10 @@ terminology >
 - stylistic : โวหาร  <br>
 - alternative : ทางเลือก
 
+#### conclude : day 2 ><br>
+  - create project typescript 
+  - writing typescript
+    
 ## Day 3
 [lecture_same_day_2](https://fullstack-68.github.io/lectures/src/T02_js_ts/T02.html#31)<br>
 
@@ -310,6 +314,10 @@ tsconfig.js
 }
 ```
 
+#### conclude : <br>
+  - create project nextJs 
+  - set up tsconfig in project nextjs
+
 ## Day_5
 
 [Lecture_4](https://fullstack-68.github.io/lectures/src/T03_pf_db/T03.html) <br>
@@ -416,3 +424,9 @@ github action : เปลี่ยน code บน github แล้วมัน�
 <br>
 terminology :<br>
   
+#### conclude : <br>
+  - basic docker --> check work docker by dbeaver
+  - set up file before use docker
+  - cmd for docker
+
+## Day 6
