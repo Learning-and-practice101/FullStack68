@@ -455,6 +455,8 @@ image : ไม่ต้องลบก็ได้ ถ้าเกิดคุ�
 เวลา Load ใหม่
 
 เวลาเราจะ spin application มันต้องเริ่มจาก image ก่อน
+
+เวลามี error อะไร ที่ database ลองลบ volume แล้วลงใหม่
 ```
 
 #### explan docker-compose.yml
@@ -518,11 +520,42 @@ volume : เหมือนเป็น drive แยกออกมา แล้
 
 อย่าลืม set root 
 appUser : สิทธิพิเศษ ไม่เท่ากับ root 
-schema : group ของ table 
+schema : group ของ table
+
+version 1 role public can
+  connect and usage schema
+```
+
+<img width="1440" height="675" alt="image" src="https://github.com/user-attachments/assets/e421409b-e04e-43ee-9c5c-8ba82f81136d" /><br>
+```
+version 2 
+  - role public can not connect and usage schema
+  - only appUser can connect and usage schema
+```
+
+<img width="1474" height="596" alt="image" src="https://github.com/user-attachments/assets/6b410a86-7917-42e1-bdc9-004ef90caf96" /><br>
+```
+version 3
+  - appuser additional privilage another schema
+```
+
+<img width="1411" height="475" alt="image" src="https://github.com/user-attachments/assets/916e57f4-3445-425c-9151-43eb3f825941" /><br>
+```
+sql for table (sequel) on postgres 
+
+สิ่งนี้ต้อง run หลังจากที่ database มัน spin ขึ้นมาแล้ว ไม่งั้นมันก็ exucute อะไรไม่ได้
+manual --> คำสั่งเหล่านี้ทุกครั้งที่คุณ spin มันขึ้นมา
+แต่เราอยากให้ docker มัน exucute ทุกครั้งที่ spin database ขึ้นมา (fresh)
+
+ถ้าเกิดคุณจะ exucute อะไรก็ตามตอน start แบบ auto --> ให้สร้าง volume หรือคุณไป map volume /docker-entrypoint เข้าไปหาอะไรก็ตามที่อยู่ใน
+host os ของคุณ แล้วอะไรก็ตามที่อยู่นั้นมันจะ exucute โดยอัตโนมัติตอนมัน create container ก็คือ _entrypoint/init.sh
+
+แล้วก็ ./_entrypoint:/docker-entrypoint-initdb.d (map ตัวนี้ที่อยู่ใน image)--> ออกไป(./_entrypoint)
 ```
 
 #### terminology :
 ``
 what ever : อะไรก็ตาม 
+manual : ทำมือ
 privilage : สิทธิพิเศษ
 ``
