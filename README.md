@@ -428,9 +428,9 @@ terminology :<br>
 
 if error authentication fail you can change your port to be : 5433 from 5432 🫠 <br>
 given port in dbeaver and .env the same port <br>
-port folow up me <img width="172" height="152" alt="image" src="https://github.com/user-attachments/assets/a52adf7c-ecda-463c-a57a-ce0f43164aa7" /> <br>
+port folow up me <br> <img width="172" height="152" alt="image" src="https://github.com/user-attachments/assets/a52adf7c-ecda-463c-a57a-ce0f43164aa7" /> <br>
 
-ถ้า run ผ่านมันจะขึ้นแบบนี้ <img width="807" height="452" alt="image" src="https://github.com/user-attachments/assets/07205e18-5249-417d-9363-b6e3b5ab9a34" />
+ถ้า run ผ่านมันจะขึ้นแบบนี้ <br><img width="807" height="452" alt="image" src="https://github.com/user-attachments/assets/07205e18-5249-417d-9363-b6e3b5ab9a34" /><br>
 
 #### conclude : day 5 <br>
   - basic docker --> check work docker by dbeaver
