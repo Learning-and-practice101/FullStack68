@@ -438,10 +438,15 @@ port folow up me <img width="172" height="152" alt="image" src="https://github.c
   - cmd for docker
 
 ## Day 6
+
+#### quick note 
+```
 docker run fail : wsl in windows มันงอแงงให้ restart 
 start clean : 
-
-quick note :
+  -  docker compose down
+  -  docker volume prune -a
+  -  docker image prune -a
+    
 ใส่ root , app password ด้วยไม่งั้น initialization scrip มันจะเอ๋อ
 
 docker compose : เป็นตัวหลัก instruction ที่เราจะบอกตอนเอา application ขึ้นต้องทำอะไรบ้าง
@@ -450,6 +455,7 @@ image : ไม่ต้องลบก็ได้ ถ้าเกิดคุ�
 เวลา Load ใหม่
 
 เวลาเราจะ spin application มันต้องเริ่มจาก image ก่อน
+```
 
 #### explan docker-compose.yml
 ```
@@ -484,6 +490,7 @@ ports: - 5432(ภายใน):${POSTGRES_PORT}(ภายนอก) --> (ปล�
 สรุป 5432(ภายใน):${POSTGRES_PORT}(ภายนอก) มีการ map port 5432 เป็น port default ของตัว image (postgres) ออกไปสู่ {POSTGRES_PORT} ที่ application อื่นเช่น dbeaver access เข้าไปได้
 
 ```
+
 ##### Volume 
 ```
 volume ถูกกำหนดอยู่ใน docker-compose.yml
@@ -498,15 +505,19 @@ volume : เหมือนเป็น drive แยกออกมา แล้
 แล้วเวลาลบ สีขาวทิ้ง volume สีส้มจะไม่หายไป
 
 ```
+
 ##### Database user management 
 <img width="1441" height="531" alt="image" src="https://github.com/user-attachments/assets/834264fb-c532-4b50-9d75-ad35354f87d5" />
+```
 สีส้ม : ประกาศชื่อ database (.env --> mydb)
 
 อย่าลืม set root 
 appUser : สิทธิพิเศษ ไม่เท่ากับ root 
 schema : group ของ table 
+```
 
-terminology :
+#### terminology :
+``
 what ever : อะไรก็ตาม 
 privilage : สิทธิพิเศษ
-
+``
