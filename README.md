@@ -606,6 +606,7 @@ Files <br>
 Windows: you must choose a terminal. <br>
 Mac: optional <br>
 
+
 explan : command
 ```
 pnpm install dotenv(อ่าน .env) drizzle-orm(orm ที่จะใช้ ตัวเชื่อม) postgres(driver ตัวอ่าน)
