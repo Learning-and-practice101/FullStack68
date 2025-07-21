@@ -590,11 +590,28 @@ database ก็คือ ORM เราจะได้ data ที่มี type 
 💾 ./_entrypoint/init.sh [link](https://github.com/fullstack-68/pf-db/blob/main/_entrypoint/init.sh)<br>
 <br>
 **แล้วก็พิมพ์ command Setting up Drizzle**<br>
-` npm init es6` <br>
+``npm init es6`` <br>
 ``pnpm install dotenv drizzle-orm postgres`` <br>
-``pnpm install -D drizzle-kit typescript tsx @types/node @tsconfig/node-lts @tsconfig/node-ts``  <br>
-``cross-env``<br>
+``pnpm install -D drizzle-kit typescript tsx @types/node @tsconfig/node-lts @tsconfig/node-ts cross-env`` <br>
 <br>
+ต่อไปสร้าง file [tsconfig.json](https://fullstack-68.github.io/lectures/src/T03_pf_db/T03.html#25)<br>
+
+ต่อไป....
+Database initialization <br>
+Files <br>
+💾 ./db/utils.ts [Link](https://github.com/fullstack-68/pf-db/blob/main/db/utils.ts) <br>
+💾 ./db/schema.ts [Link](https://github.com/fullstack-68/pf-db/blob/main/db/schema.ts) <br>
+💾 ./drizzle.config.ts [Link](https://github.com/fullstack-68/pf-db/blob/main/drizzle.config.ts) <br>
+💾 ./.npmrc from ./npmrc.example [Link](https://github.com/fullstack-68/pf-db/blob/main/.npmrc.example) (What?) <br>
+Windows: you must choose a terminal. <br>
+Mac: optional <br>
+
+explan : command
+```
+pnpm install dotenv(อ่าน .env) drizzle-orm(orm ที่จะใช้ ตัวเชื่อม) postgres(driver ตัวอ่าน)
+
+pnpm install -D drizzle-kit(tooling ) typescript(complier) tsx @types/node @tsconfig/node-lts @tsconfig/node-ts (ใช้ ts config จาก community) cross-env
+```
 --------------------------------------------------------------------------------------------------------- <br>
 
 #### terminology :
@@ -604,6 +621,6 @@ manual : ทำมือ
 privilage : สิทธิพิเศษ
 invoke : วิงวอน
 interact : มีปฏิสัมพันธ์
-transparent : 
-adopt : 
+transparent : โปร่งใส
+adopt : รับเลี้ยง
 ```
