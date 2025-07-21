@@ -580,7 +580,8 @@ database ก็คือ ORM เราจะได้ data ที่มี type 
 ```
 ##### [rangking ORM](https://ossinsight.io/collections/javascript-orm/)
  <br>
-#--------------------------------------------------------------------------------------------------------- <br>
+--------------------------------------------------------------------------------------------------------- <br>
+
 ### set up project : 
 
 ./.env Copy from [here](https://github.com/fullstack-68/pf-db/blob/main/.env.example).<br>
@@ -594,9 +595,10 @@ database ก็คือ ORM เราจะได้ data ที่มี type 
 ``pnpm install -D drizzle-kit typescript tsx @types/node @tsconfig/node-lts @tsconfig/node-ts``  <br>
 ``cross-env``<br>
 <br>
-#--------------------------------------------------------------------------------------------------------- <br>
+--------------------------------------------------------------------------------------------------------- <br>
+
 #### terminology :
-``
+```
 what ever : อะไรก็ตาม 
 manual : ทำมือ
 privilage : สิทธิพิเศษ
@@ -604,4 +606,4 @@ invoke : วิงวอน
 interact : มีปฏิสัมพันธ์
 transparent : 
 adopt : 
-``
+```
