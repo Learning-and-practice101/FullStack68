@@ -456,6 +456,8 @@ image : ไม่ต้องลบก็ได้ ถ้าเกิดคุ�
 เวลาเราจะ spin application มันต้องเริ่มจาก image ก่อน
 
 เวลามี error อะไร ที่ database ลองลบ volume แล้วลงใหม่
+
+- เวลาทำ production ห้าม db push ให้ migation
 ```
 
 #### explan docker-compose.yml
@@ -625,7 +627,7 @@ explan : [file](https://docs.google.com/document/d/1x440TQJxKc5rNJWtkjLYBoid8gnI
 ```
 Files
 💾 ./db/utils.ts : อ่าน eviroment ต่างๆ
-💾 ./db/schema.ts : เก็บขึ้น repo คนอื่นจะรู้โครงสร้าง project ของเรา
+💾 ./db/schema.ts : เก็บขึ้น repo คนอื่นจะรู้โครงสร้าง project ของเรา (ถ้า npm run db:push เวลาเราเพิ่มอะไรใหม่ๆเข้าไปมันจะเรียกว่า database synchonization)
 💾 ./drizzle.config.ts (Link) 
 💾 ./.npmrc from ./npmrc : ถ้าเกิดคุณจะ run packet.json คุณควรใช้ shell อะไร ใช้ powershell อะไรให้ uncomment อันนั้น (check version powershell in terminal by : pwsh.exe / powershell.exe) ต้อง
 uncommment เพราะไม่งั้นมันจะ default เป็น cmd ซึ่งมันไม่ work 
@@ -640,7 +642,20 @@ explan : packet.json (script)
     "eol": "eolConverter _entrypoint/*.sh"
  
 ```
+explan : drizzle-config.ts
+```
+schema: "./db/schema.ts", : ##ถ้าจะติดต่อกับ database มันต้องใช้ ข้อมูลอะไรบ้าง
+  dialect: "postgresql", : คุณจะใช้ postgresql 
+ url: connectionString, : ติดต่อ database password อะไรต่างๆ
+import { connectionString } from "@db/utils.js";
+connectionString : login เข้าไปใน database ได้โดยใช้ string ตัวเดียว
+```
 --------------------------------------------------------------------------------------------------------- <br>
+
+update power shell :<br>
+<img width="554" height="194" alt="image" src="https://github.com/user-attachments/assets/067c70f2-376e-4e2b-95b4-a5ae24b7aa49" /><br>
+<img width="686" height="209" alt="image" src="https://github.com/user-attachments/assets/92f72e20-e0e0-4f92-b619-f83971199a50" /><br>
+
 
 #### terminology :
 ```
@@ -651,4 +666,5 @@ invoke : วิงวอน
 interact : มีปฏิสัมพันธ์
 transparent : โปร่งใส
 adopt : รับเลี้ยง
+extract
 ```
