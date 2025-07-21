@@ -438,7 +438,6 @@ port folow up me <br> <img width="172" height="152" alt="image" src="https://git
   - cmd for docker
 
 ## Day 6
-
 #### quick note 
 ```
 docker run fail : wsl in windows มันงอแงงให้ restart 
