@@ -510,6 +510,15 @@ volume : เหมือนเป็น drive แยกออกมา แล้
 ถ้าเรามี data เขียนเข้ามาใน database มันจะไปเขียนใส่ persistance volume สีส้ม
 แล้วเวลาลบ สีขาวทิ้ง volume สีส้มจะไม่หายไป
 
+note : ถ้าไม่ compose down แต่ไม่ลบ volume database จะยังคงอยู่
+และ echo "---------------------------------------------"
+echo "Setting up PostgreSQL database: $POSTGRES_DB"
+echo "Creating application user: $POSTGRES_APP_USER"
+echo "---------------------------------------------"
+จะไม่ขึ้นเวลา compose up รอบสอง
+trick : ถ้า database มี error ควรลบ volume แล้ว compose up ใหม่ด้วยไม่งั้นมันจะไม่สร้าง user และอื่นๆให้คุณ
+
+
 ```
 
 ##### Database user management 
@@ -551,10 +560,48 @@ host os ของคุณ แล้วอะไรก็ตามที่อ�
 
 แล้วก็ ./_entrypoint:/docker-entrypoint-initdb.d (map ตัวนี้ที่อยู่ใน image)--> ออกไป(./_entrypoint)
 ```
+#### ORM (object relational mapper)
+application : read write update database delete 
+ถ้ามี node js คุณก็ต้องลง postgres database driver ในนั้นคุณก็จะเขียน 
+sql เข้าไปเป็น text string แล้วมันก็จะไป exucute string ตรงนั้นใน database 
+ซึ่งเวลา application มันใหญ่ขึ้นเรื่อยๆ มันมี need อื่นๆเข้ามา ควรจะมี software บางอย่างเข้ามาจัดการกับ
+database ก็คือ ORM เราจะได้ data ที่มี type annotation มาให้เราด้วยทำให้เราเขียน app ได้ดีมากๆ 
 
+##### Why ORM 
+```
+- data จะมี type information ที่เวลากดจุด จะมี list ของ field ขึ้นมาให้
+- ORM จะมี Documentation ที่ดีทำให้เราสื่อสารกับคนอื่นได้รู้เรื่อง
+- Nice Tooling
+    - Database synchronization
+    - Schema generation from existing database 
+    - Database viewer
+    - Migration tool (เวลาเพิ่มลบ colume ควรทำผ่านระบบ Migration ) 1.transparent 2.tag ได้ว่ากำลังทำอะไร (เป็นสิ่งที่ดีมากๆ ในทำ maintenance ของ app ของคุณ)
+
+```
+##### [rangking ORM](https://ossinsight.io/collections/javascript-orm/)
+
+### set up project : 
+
+./.env Copy from [here](https://github.com/fullstack-68/pf-db/blob/main/.env.example).<br>
+<br>
+💾 ./.gitignore [link](https://github.com/fullstack-68/pf-db/blob/main/.gitignore)<br>
+<br>
+💾 ./docker-compose.yml [link](https://github.com/fullstack-68/pf-db/blob/main/docker-<br>compose.yml)
+<br>
+💾 ./_entrypoint/init.sh [link](https://github.com/fullstack-68/pf-db/blob/main/_entrypoint/init.sh)<br>
+<br>
+แล้วก็พิมพ์ command Setting up Drizzle<br>
+``npm init es6`` <br>
+``pnpm install dotenv drizzle-orm postgres`` <br>
+``pnpm install -D drizzle-kit typescript tsx @types/node @tsconfig/node-lts @tsconfig/node-ts`` <br>``cross-env``<br>
+<br>
 #### terminology :
 ``
 what ever : อะไรก็ตาม 
 manual : ทำมือ
 privilage : สิทธิพิเศษ
+invoke : วิงวอน
+interact : มีปฏิสัมพันธ์
+transparent : 
+adopt : 
 ``
