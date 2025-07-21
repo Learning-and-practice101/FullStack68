@@ -591,9 +591,10 @@ database ก็คือ ORM เราจะได้ data ที่มี type 
 💾 ./_entrypoint/init.sh [link](https://github.com/fullstack-68/pf-db/blob/main/_entrypoint/init.sh)<br>
 <br>
 แล้วก็พิมพ์ command Setting up Drizzle<br>
-``npm init es6`` <br>
+` npm init es6` <br>
 ``pnpm install dotenv drizzle-orm postgres`` <br>
-``pnpm install -D drizzle-kit typescript tsx @types/node @tsconfig/node-lts @tsconfig/node-ts`` <br>``cross-env``<br>
+``pnpm install -D drizzle-kit typescript tsx @types/node @tsconfig/node-lts @tsconfig/node-ts``  <br>
+``cross-env``<br>
 <br>
 #### terminology :
 ``
