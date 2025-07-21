@@ -606,12 +606,39 @@ Files <br>
 Windows: you must choose a terminal. <br>
 Mac: optional <br>
 
+จากนั้นเราจะ cmd : `npx drizzle-kit push ` มันจะไปอ่าน db/schema ของเราแล้วมันก็จะซิงค์กับ database ที่เรากำลัง run อยู่ตอนนี้ แต่มันจะ error <br>
+ให้เอา [script](https://fullstack-68.github.io/lectures/src/T03_pf_db/T03.html#27) ไปแปะใน packet.json <br>
 
-explan : command
+ต่อไปถ้าอ่าน explan file .npmrc --> ถ้า uncomment แล้วให้ `npm run db:push` == มันจะไป activate script packet.json <br>
+แต่เวลาจะ run script ใน Powershell ตอนแรกมันจะปิดอยู่ให้ไป <br>
+google --> powershell allow execution policy --> ``Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope LocalMachine`` <br>
+<img width="791" height="363" alt="image" src="https://github.com/user-attachments/assets/d2462294-a33a-4a53-898a-9b581cc6aef5" /><br>
+<img width="887" height="267" alt="image" src="https://github.com/user-attachments/assets/f88ac485-bfeb-4fce-98f8-c529e339e435" /><br>
+
+explan : command <br>
 ```
 pnpm install dotenv(อ่าน .env) drizzle-orm(orm ที่จะใช้ ตัวเชื่อม) postgres(driver ตัวอ่าน)
 
 pnpm install -D drizzle-kit(tooling ) typescript(complier) tsx @types/node @tsconfig/node-lts @tsconfig/node-ts (ใช้ ts config จาก community) cross-env
+```
+explan : [file](https://docs.google.com/document/d/1x440TQJxKc5rNJWtkjLYBoid8gnIASB6ZApYx9_0kF8/edit?usp=sharing) <br>
+```
+Files
+💾 ./db/utils.ts : อ่าน eviroment ต่างๆ
+💾 ./db/schema.ts : เก็บขึ้น repo คนอื่นจะรู้โครงสร้าง project ของเรา
+💾 ./drizzle.config.ts (Link) 
+💾 ./.npmrc from ./npmrc : ถ้าเกิดคุณจะ run packet.json คุณควรใช้ shell อะไร ใช้ powershell อะไรให้ uncomment อันนั้น (check version powershell in terminal by : pwsh.exe / powershell.exe) ต้อง
+uncommment เพราะไม่งั้นมันจะ default เป็น cmd ซึ่งมันไม่ work 
+```
+
+explan : packet.json (script)
+```
+"db:generate": "cross-env NODE_OPTIONS='--import tsx' drizzle-kit generate",
+    "db:push": "cross-env(ใช้ได้ทั้ง mac และ windows) NODE_OPTIONS='--import(ใช้ยัด tsx เข้าไปใน Environment variable ของ shell ) tsx'(push เฉยๆไม่ได้ต้องใช้ type script runner มาช่วย มัน support ESM import) drizzle-kit push(exucute command drizzle-kit push)",
+    "db:migrate": "cross-env NODE_OPTIONS='--import tsx' drizzle-kit migrate",
+    "db:prototype": "tsx ./db/prototype.ts",
+    "eol": "eolConverter _entrypoint/*.sh"
+ 
 ```
 --------------------------------------------------------------------------------------------------------- <br>
 
