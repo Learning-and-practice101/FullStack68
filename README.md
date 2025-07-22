@@ -658,33 +658,68 @@ update power shell :<br>
 
 #### Authenticatio faild : 
 ```
-psql -U appuser -h localhost -p 5433 -d mydb (ถ้า เข้าได้ → แปลว่า database ทำงานปกติ )
-
 psql -U postgres -h localhost -p 5433 -d mydb (ถ้า เข้าได้ → แปลว่า database ทำงานปกติ )
 
+1.psql -U appuser -h localhost -p 5433 -d mydb (ถ้า เข้าได้ → แปลว่า database ทำงานปกติ )
 ตอนอยู่ใน mydb=# \du เพื่อดูว่ามี role ไหนทำง่านอยู่บ้าง
 
-3. จากนั้นให้รันคำสั่งเหล่านี้เพื่อให้ appuser มีสิทธิ์เต็ม:
+2. จากนั้นให้รันคำสั่งเหล่านี้เพื่อให้ appuser มีสิทธิ์เต็ม:
 sql
 Copy code
+มีรหัสผ่านถูกต้อง...
 ALTER USER appuser WITH PASSWORD '5678';
 GRANT CONNECT ON DATABASE mydb TO appuser;
 GRANT USAGE ON SCHEMA public TO appuser;
 GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO appuser;
 
+ถ้าไม่มี appuser ให้สร้างใหม่ 
 CREATE USER appuser WITH PASSWORD '5678';
 GRANT CONNECT ON DATABASE mydb TO appuser;
 GRANT USAGE ON SCHEMA public TO appuser;
 GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO appuser;
 
-4. ออก \q
+ให้ appuser สิทธิ์ใน schema public
+GRANT USAGE ON SCHEMA public TO appuser;
+GRANT CREATE ON SCHEMA public TO appuser;
+GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO appuser;
 
-5. npm run db:push
+3. ออก \q
+
+4. npm run db:push
+
+reset password :
+1.psql -U postgres
+2.ALTER USER appuser WITH PASSWORD 'newpassword';
 
 check post ว่าทำงานอยู่ : netstat -aon | findstr :5433
 
 ```
-
+1. <br>
+<img width="1016" height="471" alt="image" src="https://github.com/user-attachments/assets/20b16af5-350d-4a4f-8202-3e7d52ad42dc" /> <br>
+<img width="983" height="645" alt="image" src="https://github.com/user-attachments/assets/9cd1eba6-890e-4e9f-85be-f6ed28614b60" /> <br>
+<img width="986" height="324" alt="image" src="https://github.com/user-attachments/assets/ce4f79ea-d481-4c10-a143-34fed98bd403" /> <br>
+<img width="951" height="189" alt="image" src="https://github.com/user-attachments/assets/e1cc2063-2563-4bd7-84d3-d4b3a1a5742c" /> <br>
+<img width="1014" height="357" alt="image" src="https://github.com/user-attachments/assets/3485b773-49cf-4d8f-b42a-bc5a46c50fd0" /> <br>
+ <br>
+2. 
+<img width="985" height="305" alt="image" src="https://github.com/user-attachments/assets/aac52ff9-4578-4cdd-ae55-9cc081dfa90c" /> <br>
+<img width="1033" height="502" alt="image" src="https://github.com/user-attachments/assets/b1cfc1c9-8bab-481a-88ae-427469f042ba" /> <br>
+✅ วิธีแก้ที่ใช้ได้แน่นอน: ให้ superuser เปลี่ยน owner ของ schema <br>
+🔧 1. เข้าด้วย superuser (postgres): <br>
+bash <br>
+`psql -U postgres -h localhost -p 5433 -d mydb` <br>
+🔧 2. เปลี่ยน owner ของ schema public ให้เป็น appuser: <br>
+sql <br>
+`ALTER SCHEMA public OWNER TO appuser;` <br>
+🔧 3. ให้สิทธิ์ appuser สร้าง object (เช่น table) ได้: <br>
+sql <br>
+`GRANT ALL ON SCHEMA public TO appuser;` <br>
+🔧 (ทางเลือก): ให้สิทธิ์ใช้งาน future objects (เช่น table ที่ยังไม่ถูกสร้าง): <br>
+sql <br>
+`ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL ON TABLES TO appuser;` <br>
+ <br>
+<img width="732" height="175" alt="image" src="https://github.com/user-attachments/assets/1cf7120e-fa5b-4bd9-a49d-dfe24f22bebe" /> <br>
+  <br>
 #### terminology :
 ```
 what ever : อะไรก็ตาม 
