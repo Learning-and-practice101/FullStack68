@@ -656,6 +656,34 @@ update power shell :<br>
 <img width="554" height="194" alt="image" src="https://github.com/user-attachments/assets/067c70f2-376e-4e2b-95b4-a5ae24b7aa49" /><br>
 <img width="686" height="209" alt="image" src="https://github.com/user-attachments/assets/92f72e20-e0e0-4f92-b619-f83971199a50" /><br>
 
+#### Authenticatio faild : 
+```
+psql -U appuser -h localhost -p 5433 -d mydb (ถ้า เข้าได้ → แปลว่า database ทำงานปกติ )
+
+psql -U postgres -h localhost -p 5433 -d mydb (ถ้า เข้าได้ → แปลว่า database ทำงานปกติ )
+
+ตอนอยู่ใน mydb=# \du เพื่อดูว่ามี role ไหนทำง่านอยู่บ้าง
+
+3. จากนั้นให้รันคำสั่งเหล่านี้เพื่อให้ appuser มีสิทธิ์เต็ม:
+sql
+Copy code
+ALTER USER appuser WITH PASSWORD '5678';
+GRANT CONNECT ON DATABASE mydb TO appuser;
+GRANT USAGE ON SCHEMA public TO appuser;
+GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO appuser;
+
+CREATE USER appuser WITH PASSWORD '5678';
+GRANT CONNECT ON DATABASE mydb TO appuser;
+GRANT USAGE ON SCHEMA public TO appuser;
+GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO appuser;
+
+4. ออก \q
+
+5. npm run db:push
+
+check post ว่าทำงานอยู่ : netstat -aon | findstr :5433
+
+```
 
 #### terminology :
 ```
