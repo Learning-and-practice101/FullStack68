@@ -92,6 +92,8 @@ ESM = วิธีแบ่งโปรแกรมเป็นหลายไ�
   - create project by cmd
   - ESM asd config
   - Hello world in ts and js
+<br>
+เนื้อหาโดยรวม: เรียนรู้การตั้งค่าโปรเจกต์ ESM, การ compile TypeScript, และการใช้งาน nodemon + tsconfig<br>
 
 ## Day 2 <br>
 [lecture 3: typeScript](https://fullstack-68.github.io/lectures/src/T02_js_ts/T02.html#1) <br>
@@ -194,7 +196,9 @@ terminology >
 #### conclude : day 2 <br>
   - create project typescript 
   - writing typescript
-    
+<br>
+เนื้อหาโดยรวม: ฝึกใช้ TypeScript เบื้องต้น ทั้ง primitive types, custom types, และการเขียน function แบบ type-safe <br>
+
 ## Day 3
 [lecture_same_day_2](https://fullstack-68.github.io/lectures/src/T02_js_ts/T02.html#31)<br>
 
@@ -279,6 +283,8 @@ terminology :<br>
     - หลังจากที่ 1.`npm init es6` 2.`pnpm install -D typescript tsx @types/node` แล้วให้
     - old `npx tsc --init` --> new version `pnpm install @types/node @tsconfig/node-lts @tsconfig/node-ts`
     - `npx tsc --showConfig` เอาไว้ดู config file ด้านบน
+
+เนื้อหาโดยรวม: อาจเป็นการฝึกซ้ำจาก Day_1 หรือทดลองเพิ่ม concept ใหม่ใน environment เดิม เช่น ESM หรือ dynamic import
 ```
 
 ## Day 4
@@ -319,6 +325,11 @@ tsconfig.js
 #### conclude : day 4 <br>
   - create project nextJs 
   - set up tsconfig in project nextjs
+<br>
+สรุปเนื้อหา:<br>
+✅ เรียนรู้การตั้งค่า Next.js แบบใช้ TypeScript<br>
+✅ อาจมีการใช้ CSS Framework (ผ่าน PostCSS เช่น Tailwind)<br>
+✅ เรียนรู้การสร้างหน้าเว็บด้วย src/pages และจัดโครงสร้างโปรเจกต์<br>
 
 ## Day_5
 
@@ -436,6 +447,11 @@ port folow up me <br> <img width="172" height="152" alt="image" src="https://git
   - basic docker --> check work docker by dbeaver
   - set up file before use docker
   - cmd for docker
+<br>
+สรุปเนื้อหา: <br>
+✅ เรียนรู้การใช้ Docker Compose เพื่อจัดการ environment <br>
+✅ ใช้ init.sh สำหรับเตรียมระบบก่อน container ทำงาน <br>
+✅ มี .env สำหรับตั้งค่าระบบอย่างยืดหยุ่นและปลอดภัย <br>
 
 ## Day 6
 #### quick note 
@@ -722,6 +738,22 @@ sql <br>
  <br>
 <img width="732" height="175" alt="image" src="https://github.com/user-attachments/assets/1cf7120e-fa5b-4bd9-a49d-dfe24f22bebe" /> <br>
   <br>
+
+conclude : cmd <br>
+node -r dotenv/config -e "console.log(process.env.POSTGRES_PORT)" <br>
+psql -U postgres -h localhost -p 5433 -d mydb <br>
+psql -U appuser -h localhost -p 5433 -d mydb <br>
+type .env <br>
+npm run db:push <br>
+<br>
+sql : <br>
+\du <br>
+\q <br>
+\dn+ <br>
+<br>
+
+conclude : debug 
+  - เปลี่ยน port 5433:5432 --> set up permission for appuser --> npm run db:push
 #### terminology :
 ```
 what ever : อะไรก็ตาม 
@@ -733,3 +765,17 @@ transparent : โปร่งใส
 adopt : รับเลี้ยง
 extract
 ```
+#### conclude : day 5 <br>
+  - Database user management ORM
+  - อธิบาย Docker container
+  - Setup 
+  - Debug database authen faild 
+<br>
+🔍 สรุปว่าโปรเจกต์นี้ day 6 <br>
+เป็นโปรเจกต์ backend (หรือ full-stack) ที่เขียนด้วย TypeScript และใช้ Drizzle ORM สำหรับจัดการฐานข้อมูล โดยใช้ Docker และ pnpm ในการจัดการ environment และ dependency <br>
+✅ การจัดการ Database ด้วย TypeScript (ผ่าน drizzle-orm) <br>
+✅ การใช้งาน Docker Compose + Shell Script เพื่อจัดการ Environment <br>
+✅ การแยก concerns ของระบบให้เป็นระเบียบ เช่น database logic, entrypoint <br>
+
+## day 7
+
