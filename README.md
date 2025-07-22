@@ -777,5 +777,9 @@ extract
 ✅ การใช้งาน Docker Compose + Shell Script เพื่อจัดการ Environment <br>
 ✅ การแยก concerns ของระบบให้เป็นระเบียบ เช่น database logic, entrypoint <br>
 
-## day 7
+## day 7 continue day 6
+migration : เหมือน version contol ซึ่งเราสามารถรู้ได้ว่าใครทำอะไรบ้างใน database 
+
+generate : npm run db:generate 
+มันจะไป run คำสั่ง `"db:generate": "cross-env NODE_OPTIONS='--import tsx' drizzle-kit generate",`ใน packet.json 
 
