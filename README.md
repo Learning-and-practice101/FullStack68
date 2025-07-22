@@ -694,6 +694,8 @@ reset password :
 check post ว่าทำงานอยู่ : netstat -aon | findstr :5433
 
 ```
+
+### debug
 1. <br>
 <img width="1016" height="471" alt="image" src="https://github.com/user-attachments/assets/20b16af5-350d-4a4f-8202-3e7d52ad42dc" /> <br>
 <img width="983" height="645" alt="image" src="https://github.com/user-attachments/assets/9cd1eba6-890e-4e9f-85be-f6ed28614b60" /> <br>
