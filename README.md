@@ -458,6 +458,7 @@ port folow up me <br> <img width="172" height="152" alt="image" src="https://git
 ✅ มี .env สำหรับตั้งค่าระบบอย่างยืดหยุ่นและปลอดภัย <br>
 
 ## Day 6
+[lecture](https://fullstack-68.github.io/lectures/src/T03_pf_db/T03.html#26)<br>
 #### quick note 
 ```
 docker run fail : wsl in windows มันงอแงงให้ restart 
@@ -782,6 +783,7 @@ extract
 ✅ การแยก concerns ของระบบให้เป็นระเบียบ เช่น database logic, entrypoint <br>
 
 ## day 7 continue day 6
+[lecture](https://fullstack-68.github.io/lectures/src/T03_pf_db/T03.html#26)<br>
 migration : เหมือน version contol ซึ่งเราสามารถรู้ได้ว่าใครทำอะไรบ้างใน database <br>
 ซึ่งสามารถ record ได้ว่าทำอะไรกับ database ไปบ้าง <br>
 generate : npm run db:generate <br>
@@ -842,6 +844,61 @@ Remove-Item -Recurse -Force db/migration/meta
 `npm run db:generate`
 #### 4. แล้ว migrate:
 `npm run db:migrate`
+
+### Day 8
+###Set up backend<br>
+----------------------------------------------------------------------------------
+[leature](https://fullstack-68.github.io/lectures/src/T04_pf_backend/T04.html)<br>
+
+the best backend : Nestjs (Big project : Opiniated ),express (Minimal project :Unopiniated )<br>
+note : ปกติถ้าทำ backend ก็จะผูกกับ database ไปเลย<br>
+<br>
+setup project (follow lecture):<br>
+```
+Packages
+npm init es6
+
+Express JS
+pnpm i express cors helmet morgan debug
+
+Typescript
+pnpm i typescript @tsconfig/node-lts @tsconfig/node-ts tsx tsc-alias
+pnpm i -D @types/cors @types/express @types/debug @types/morgan @types/node cross-env nodemon
+
+ORM
+pnpm i drizzle-orm postgres dotenv
+pnpm i -D drizzle-kit
+```
+note : @types/express (type definition)<br>
+<img width="781" height="351" alt="image" src="https://github.com/user-attachments/assets/011d567a-c38b-435a-9875-bb59f5b460cf" /><br>
+<img width="1495" height="367" alt="image" src="https://github.com/user-attachments/assets/c86cdc95-0365-4ec4-ba6d-9ace68d2f70d" /><br>
+<img width="84" height="54" alt="image" src="https://github.com/user-attachments/assets/33b19b64-8028-4d59-a272-0f7e4b9d1934" /><br>
+<img width="1476" height="346" alt="image" src="https://github.com/user-attachments/assets/a5ff6734-664b-49ba-bf59-237c0bc32cd1" /><br>
+<br>
+note : -D <br>
+ลงแบบ dependency : in packet.json จะมี devDependency , dependency <br>
+<br>
+จากนั้น...ลงfile db: <br>
+<img width="514" height="233" alt="image" src="https://github.com/user-attachments/assets/59e1e35a-559c-4140-bb18-14467882b6a3" /><br>
+<br>
+<img width="907" height="522" alt="image" src="https://github.com/user-attachments/assets/d0896d17-8716-4f8d-9aa6-68ffdabafe43" /><br>
+<br>
+<img width="411" height="344" alt="image" src="https://github.com/user-attachments/assets/a75eb9fd-00ac-4035-9af4-b0defbab46c2" /><br>
+<br>
+note : .npmrc <br>
+file พิเศษสำหรับ windows ถ้า จะ run node script npm run ต่างๆ มันจะใช้ cmd ซึ่งเก่ามากเลยต้อง <br>
+เปลี่ยนมาใช้ powershell แทน  mac and linux ไม่เป็นอะไร <br>
+<img width="336" height="123" alt="image" src="https://github.com/user-attachments/assets/143166c2-c081-4356-9f9a-85e031430835" /> <br>
+check version powershell <br>
+<br>
+#### terminology : 
+```
+Boilerplate : แม่แบบ
+Opiniated : ถ้าคุณจะใช้มันคุณต้องทำตามแบบแผนมัน
+```
+----------------------------------------------------------------------------------<br>
+### Imprement backend <br>
+
 =======
 # 🧠 FullStack68 - Learning Journey
 
@@ -950,3 +1007,10 @@ A hands-on fullstack learning path with TypeScript, Next.js, Docker, PostgreSQL,
 > — Your future self will thank you for clean architecture 🙌
 
 main
+
+## cmd : for github 
+
+**check root folder for repo github**<br>
+```
+git rev-parse --show-toplevel 
+```
