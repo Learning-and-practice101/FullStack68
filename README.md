@@ -846,7 +846,7 @@ Remove-Item -Recurse -Force db/migration/meta
 `npm run db:migrate`
 
 ### Day 8
-###Set up backend<br>
+### Set up backend <br>
 ----------------------------------------------------------------------------------
 [leature](https://fullstack-68.github.io/lectures/src/T04_pf_backend/T04.html)<br>
 
