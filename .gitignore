@@ -1,0 +1,6 @@
+node_modules/
+dist/
+src/
+package.json 
+pnpm-lock.yaml 
+tsconfig.json
