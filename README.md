@@ -898,6 +898,83 @@ Opiniated : ถ้าคุณจะใช้มันคุณต้องท�
 ```
 ----------------------------------------------------------------------------------<br>
 ### Imprement backend <br>
+<img width="761" height="948" alt="image" src="https://github.com/user-attachments/assets/a1ca9085-bfc2-48b9-96ef-bb51c78b2bd5" /><br>
+basic set up <br>
+<br>
+เบื้องหลังของ npm run dev <br>
+"dev": "nodemon", in packet.json เป็นตัวที่เราจะ run มัน แล้วมันก็จะไปอ่าน config ใน <br>
+"exec": "tsx src/index.ts" in nodemon.json <br>
+ข้อดีของ nodemon มันจะ auto restart server โดยอัตโนมัติ ดีกว่า manual เยอะ <br>
+<br>
+index.js minimal example <br>
+```
+import "dotenv/config"; //import enviroment ที่อยู๋ใน .env
+import express from "express"; //backend application
+import { dbClient } from "@db/client.js"; //database
+
+const app = express(); // initailize ตัว app ของเรา //Intializing the express app
+
+/* 
+//เปิดช่องให้ติดต่อกับ app ได้
+app.get("/", (req, res, next) => {
+  res.send("Hello world");
+}); 
+*/
+
+//เปิดช่องให้ติดต่อกับ app ได้
+//ถ้าจะ query กับ database ต้องใช้ async function
+//เพราะการทำพวกนี้เป็น promise base จะได้ไม่ต้องมานั่ง thenๆๆๆ
+
+// Query
+app.get("/todo", async (req, res, next) => {
+  try {
+    const results = await dbClient.query.todoTable.findMany();
+    res.json(results);
+  } catch (err) {
+    console.log(err);
+    res.send("Error");
+    //next(err);
+  }
+}); 
+
+//app รอฟัง requrst จาก flontend หรือ จาก whatever
+// Running app
+app.listen(3000, async () => {
+  console.log("Listening on port 3000");
+}); 
+```
+note : middleware <br>
+```
+app.put app.get app.patch เรียกว่า route nandlerer ก็คือ สิ่งที่เอาไว้ handle route 
+แต่อย่างแรกอยากจะ middleware อยากจะ log ก่อนว่ามีอะไรเกิดขึ้น 
+
+morgan : มี patch เข้ามาที่ route ชื่ออะไร route ใช้เวลาเท่าไหร่ (ขาเข้า/ขาออก)
+helmet : ดักตัว Http response ที่มันมี header ให้มัน modle นิดนึง
+cor
+express.json : format json boby --> json object ถ้าไม่มีบรรทัดนี้ มันจะมาเป็นแบบ raw text มาเป็น string ซึ่งมันใช้ไม่ได้
+
+```
+note : debugging<br>
+```
+ก่อนที่แอปจะไปไกลควรมี debugging tool ถ้ามี debugging tool จะเรียนรู้แอปได้เยอะมากๆ
+```
+<img width="202" height="60" alt="image" src="https://github.com/user-attachments/assets/5a7c2242-c3a4-42ff-93f6-22e3083282b2" /><br>
+<img width="279" height="420" alt="image" src="https://github.com/user-attachments/assets/5c243cd9-505a-4107-adc0-a2568479e61c" /><br>
+
+note : query parameter 
+```
+localhost:3000/todo?message=hello  ?message=hello ใน route ของเราสามารถใส่ query parameter ได้
+```
+<img width="668" height="288" alt="image" src="https://github.com/user-attachments/assets/616394a7-7e85-486d-ab6d-1290c5ded884" /><br>
+<br>
+#### terminology :
+```
+meaningful : 
+middleware : คือสิ่งที่มันขวางทาง request ของ user (ขาเข้า/ขาออก)
+inspect : 
+```
+
+### Day 9
 
 =======
 # 🧠 FullStack68 - Learning Journey
@@ -1013,4 +1090,8 @@ main
 **check root folder for repo github**<br>
 ```
 git rev-parse --show-toplevel 
+```
+comment code <br>
+```
+✅ กด Shift + Alt + A
 ```
