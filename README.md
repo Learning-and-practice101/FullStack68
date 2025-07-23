@@ -16,6 +16,9 @@ learning Java script : https://www.w3schools.com/js/js_versions.asp <br>
 4. code
 5. code .
 ```
+<br>
+cmd : clear <br>
+<br>
 run file js in VsCode terminal (only .js): `node (full name of file)`<br>
 <br>
 <mark> **ESM PROJECT** </mark><br>
@@ -778,8 +781,63 @@ extract
 ✅ การแยก concerns ของระบบให้เป็นระเบียบ เช่น database logic, entrypoint <br>
 
 ## day 7 continue day 6
-migration : เหมือน version contol ซึ่งเราสามารถรู้ได้ว่าใครทำอะไรบ้างใน database 
+migration : เหมือน version contol ซึ่งเราสามารถรู้ได้ว่าใครทำอะไรบ้างใน database <br>
+ซึ่งสามารถ record ได้ว่าทำอะไรกับ database ไปบ้าง <br>
+generate : npm run db:generate <br>
+มันจะไป run คำสั่ง `"db:generate": "cross-env NODE_OPTIONS='--import tsx' drizzle-kit generate",`ใน packet.json <br>
+cross-env NODE_OPTIONS='--import tsx' ท่ายากทำให้เป็น esm module  <br>
+<img width="904" height="348" alt="image" src="https://github.com/user-attachments/assets/cc0c7249-1e89-4c10-a20d-53362304d69f" /><br>
+เราจะสนใจ file นี้ <br>
+<br>
+ซึ่งถ้าเรา  run `npm run db:migrate` มันจะไป run script ใน packet.json ที่ชื่อว่า <br>
+`"db:migrate": "cross-env NODE_OPTIONS='--import tsx' drizzle-kit migrate",` <br>
+ <br>
+ถ้าเราเปลี่ยนแปลง scheme หลังจากเปลี่ยนแล้วให้เรา `npm run db:generate` <br> 
+แล้วมันจะสร้าง file migration ใหม่ มันจะเปรียบแทบ migration กับ schema ที่มีอยู่ ถ้าไม่มีมันจะสร้าง migration ใหม่<br> 
+<br> 
+ถ้าเราจะให้มันขึ้น production หรือให้มัน show on database dbeaver ให้เรา run `npm run db:migrate`<br> 
+<br> 
 
-generate : npm run db:generate 
-มันจะไป run คำสั่ง `"db:generate": "cross-env NODE_OPTIONS='--import tsx' drizzle-kit generate",`ใน packet.json 
+### TypeScript with database 
+จากนั้นเราจะ เปลี่ยนไปใช้ TypeScript ในการ interact กับ database  <br>
+แทนที่เราจะมานั่ง interact กับ dbeaver <br>
+CRUD<br>
+💾 ./db/client.ts [Link](https://github.com/fullstack-68/pf-db/blob/main/db/client.ts) <br>
+(file นี้ บอกว่าถ้าเราจะเริ่ม interact กับ database เราจะเริ่มด้วย dbClient) ข้อดีง่าย และ type save<br>
+💾 ./db/prototype.ts [Link](https://github.com/fullstack-68/pf-db/blob/main/db/prototype.ts) <br>
 
+ถ้าจะ test ใช้ คำสั่ง `npx tsx db/prototype.ts` <br>
+แต่ว่าผมขี้เกียจพิมพ์ `npx tsx db/prototype.ts` ผมก็เลยสร้าง script ของผมเองเป็น `npm run db:prototype`
+
+### important note : ถ้าจะเปลี่ยนให้ vscode ใช้ LF ตลอด <br>
+ให้เพิ่ม `eolConverter _entrypoint/*.sh` แล้วก็ใช้คำสั่ง `npm run eol` <br>
+
+### เก็บตก run migration แล้วไม่ได้ 
+ถ้า npm run db:migrate แล้วเกิด warning คือมันมาจาก driver ไม่ได้มาจาก Dizzle ORM <br>
+#### เผลอลบ file migration : 
+`echo "-- intentionally left blank" > db/migration/0001_broken_aqueduct.sql` badly solve <br> 
+
+#### 1. delete table on DBeaver
+```
+DROP TABLE IF EXISTS __drizzle_migrations;
+DROP TABLE IF EXISTS "todo";
+```
+#### 2. Delate file migration and meta 
+```
+rm db/migration/*.sql
+✅ วิธีลบโฟลเดอร์ db/migration/meta บน PowerShell
+ให้ใช้คำสั่งนี้แทน:
+
+powershell
+Copy
+Edit
+Remove-Item -Recurse -Force db/migration/meta
+ความหมาย:
+-Recurse = ลบทั้งโฟลเดอร์และสิ่งที่อยู่ข้างใน
+
+-Force = ลบแม้จะมี hidden/system file
+```
+#### 3. Generate ใหม่:
+`npm run db:generate`
+#### 4. แล้ว migrate:
+`npm run db:migrate`
