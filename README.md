@@ -23,7 +23,8 @@ cmd : clear <br>
 run file js in VsCode terminal (only .js): `node (full name of file)`<br>
 <br>
 <mark> **ESM PROJECT** </mark><br>
-step
+
+#### step
 ```
 npm init -y
 pnpm install -D typescript @type/node nodemon
