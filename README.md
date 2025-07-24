@@ -1058,6 +1058,16 @@ migration scipt :
 ```
 
 ```
+<img width="762" height="552" alt="image" src="https://github.com/user-attachments/assets/ec10c34f-8b25-43f8-acff-f5376724eac9" /><br>
+setting role in datebase in dbeaver <br>
+```
+solve database error :
+  เปลี่ยน port : ให้ตรงกับ localhost
+  setting : role ให้ทำได้ทุกอย่าง
+
+  ลอง npm run dav แล้วลอง get put หรือเปิด localhost:3000 มันน่าจะได้
+```
+
 =======
 # 🧠 FullStack68 - Learning Journey
 
