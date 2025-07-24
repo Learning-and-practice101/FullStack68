@@ -1055,9 +1055,6 @@ migration scipt :
 ```
 
 <img width="907" height="745" alt="image" src="https://github.com/user-attachments/assets/04e44e4a-55a7-49a4-9f19-1ba0f1a34772" /><br>
-```
-
-```
 <img width="762" height="552" alt="image" src="https://github.com/user-attachments/assets/ec10c34f-8b25-43f8-acff-f5376724eac9" /><br>
 setting role in datebase in dbeaver <br>
 ```
