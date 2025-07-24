@@ -975,7 +975,89 @@ inspect :
 ```
 
 ### Day 9
+--------------------------------------------------------------<br>
+<img width="354" height="278" alt="image" src="https://github.com/user-attachments/assets/d658aa6e-35c3-43dc-a13e-bb525989c621" /> <br>
+`npm run build` (เวลา run production eviroment คุณไม่ได้ run บน TS คุณ run on Js มันควรจะ)<br>
+มันจะมา call `"build": "tsc && tsc-alias",` In packet.json <br>
+tsc-alias คือเวลา file ที่มันมีการ call link กันไปมา แล้วใช้ alias คุณจะมีสิ่งที่ใช้ @ <br> 
+@ คือ aliasa และมันถูกกำหนดมาจากการที่คุณทำ <br>
+```
+"paths": {
+      "@db/*": ["./db/*"]
+    }
+```
+in tsconfig.json <br>
+ถ้าไม่ได้ใช้ @ ที่ TSC มันจะ link ไม่ถูก ก็เลยใช้ packet นี้แปลงร่าง @ ให้เป็น relative path<br>
+<img width="864" height="451" alt="image" src="https://github.com/user-attachments/assets/f0a8313c-7152-4d22-88f2-340a2d0fb6e1" /><br>
+run แล้วไปที่ dist <br>
+run js : `node dist/src/indes.js`<br>
+<img width="1321" height="629" alt="image" src="https://github.com/user-attachments/assets/600985b3-31ed-49ba-9eee-5b1e0b99184a" /><br>
+ถ้าจะ run จริงเราจะใช้ `npm run start `
+--------------------------------------------------------------<br>
+<img width="836" height="344" alt="image" src="https://github.com/user-attachments/assets/92cc667c-138f-4317-ac2a-db570ce1ed69" /><br>
+ปกติเรา run database เราก็จะไปดึง image มาจาก docker hub <br>
+แต่เราจะสร้าง application ของเราเองแปลว่าเราต้องสร้าง image ของเราเอง<br>
+image คือ instruction ที่ใช้ในการ spon application ของเราได้ <br>
+ต้องใช้ <img width="180" height="85" alt="image" src="https://github.com/user-attachments/assets/0d4ba0b2-6472-4816-8d66-7a4be4aac14b" /> ตัวนี้ก่อน<br>
+จะสร้างสีส้มนี้โดย <img width="172" height="98" alt="image" src="https://github.com/user-attachments/assets/4f5cb608-47a6-4384-a02e-9bf6440d914f" /> <br>
+dockerfile คือ instruction ในการสร้าง image <br> 
+<img width="827" height="292" alt="image" src="https://github.com/user-attachments/assets/94383b68-5010-41b4-937e-2c7ea0668cd0" /> <br>
+docker-compose.yml --> ใช้ run image ที่พึ่ง build เมื่อกี้ <br>
+<img width="735" height="341" alt="image" src="https://github.com/user-attachments/assets/d297adb5-cbda-493d-9567-062438790d29" /> <br>
+<img width="349" height="66" alt="image" src="https://github.com/user-attachments/assets/b6d58995-9fa4-4189-9f01-8d427a8fb3df" /> <br>
+```
+container_name: pf-backend
+build: . build มาจากตรงนี้ file นี้ แล้วไปหา file ชื่อ docker file ก็คือเป็น local build image
+```
+```
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_PORT=${POSTGRES_PORT}
+      - POSTGRES_HOST=${POSTGRES_HOST}
+      - POSTGRES_APP_USER=${POSTGRES_APP_USER}
+      - POSTGRES_APP_PASSWORD=${POSTGRES_APP_PASSWORD}
 
+process นี้คือ inject secret ซึ่งจะไม่ nject secret เข้าไปใน image ตอนสร้าง container 
+```
+```
+เวลาจะ dev จะ run container ไม่ควรใช้ eviroment เดียวกัน
+
+จะมี .env.test (เวลา run docker database ไม่ใช่ localhost)
+กับ .env (ตอน dev location database คือ localhost (ตัวสร้าง backend ขึ้นมา))
+
+```
+```
+docker compose --env-file ./.env.test up -d --force-recreate --build (ทุกๆครั้งที่ run คำสั่งนี้กรุณาไป build ใหม่ด้วย เพราะไม่งั้น เดี่ยวมันจะใช้ cache)
+(คำสั่งที่ใช้ run docker container ขึ้นมา)
+
+ไม่ได้ทำการ DB:push เลย เราทำการสร้าง database ใหม่ที่ไม่มี table
+แล้วใน process ของการที่ backend ผม spawn มัน exucute migration step ให้ด้วย มันสร้าง table ให้เลย
+
+สะดวก davop มาก มีหน้าที่แค่ start แล้วที่เหลือมันไป run migration ของมันให้ด้วย
+
+
+```
+```
+migration.log
+
+มายังไงให้ไปดูที่ docker-compose.yml 
+volumes:
+      - ./logs:/app/logs (ทำการ mouse volume ที่ชื่อ log เอาไว้)
+
+migration scipt :
+  post_start: (เมื่อไหร่ docker start หรือ restart ให้ exucute command ในนี้)
+      - command:
+          [
+            "sh",
+            "-c",
+            'npm run db:migrate | awk ''{ print strftime("[%Y-%m-%d %H:%M:%S]"), $0; fflush(); }'' | tee -a /app/logs/migration.log',
+          ]
+  
+```
+
+<img width="907" height="745" alt="image" src="https://github.com/user-attachments/assets/04e44e4a-55a7-49a4-9f19-1ba0f1a34772" /><br>
+```
+
+```
 =======
 # 🧠 FullStack68 - Learning Journey
 
