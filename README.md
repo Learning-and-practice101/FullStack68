@@ -1054,16 +1054,104 @@ migration scipt :
           ]
   
 ```
+<img width="878" height="762" alt="image" src="https://github.com/user-attachments/assets/b93df5ab-2865-4b89-a61e-32f2bb6b35f0" /><br>
+```
+เวลาคุณ run docker มันเกิดอะไรบนเครื่องคุณ?
 
+สร้างวง net pf-net เข้าไปดู docker-compose.yml
+ถ้าอยากรู้ข้อมูลของ docker
+cmd : docker network ls
+
+networks:
+  preflight_pf-net: # Check by using `docker network ls` command
+    external: true
+
+network ตรงนี้ที่บอกว่า external: true (แปลว่ามีมาก่อนแล้วมาจากสร้าง database จาก day 6)
+```
+containner 2 ตัวที่สร้างขึ้นมาตอนนี้ก็จะมี database กับ backend 
+<img width="833" height="144" alt="image" src="https://github.com/user-attachments/assets/05e44101-b49b-4a11-960c-0cbbcaab57f2" /><br>
+database <br>
+<br>
+<img width="784" height="141" alt="image" src="https://github.com/user-attachments/assets/ff21a5f9-b101-44f8-9686-2f86e405b32a" /><br>
+backend<br>
+<br>
+```
+เวลา database กับ backend คุยกันมันจะไม่ใช่ localhost 
+localhost มันจะ loopback กลับมาหาตัวเอง 
+
+ใน docker มันมีระบบ DNS ให้เราเรียบร้อย คือ ถ้าคุณพิมพ์ แค่ pf-db มันจะ resolve ที่กลายเป็น ip ที่ถูกต้อง
+กล่าวคือ ip ของ database สามารถใช้ชื่อ container ในการใช้การได้เลย แล้วมันจะ resolve  
+ผ่านกลไล ของ docker network มี DNS server แบบ local
+
+มันเลยหลายเป็น in .env.test
+POSTGRES_PORT=5432
+POSTGRES_HOST=pf-db # Notice that we use the container name here.
+
+```
+
+dockerhub<br>
+```
+พอเราอยู๋ deployment server เราต้องมีการ access ที่เราสร้างเมื่อกี้
+ก็คือ image preflight-backend
+
+ถ้าเราอยากจะ deploy เราต้องมี image นี้ด้วย ที่ๆมันจะอยู่ก็คือ dockerhub 
+```
+<img width="961" height="898" alt="image" src="https://github.com/user-attachments/assets/4bc0ed8a-29ae-4dca-954c-7a75619bb047" /><br>
+<br>
+<img width="990" height="426" alt="image" src="https://github.com/user-attachments/assets/97037c9c-9445-4929-88e1-ff1aa5af4812" /><br>
+dockerhub (your can follow according to lecture)<br> 
+```
+Dockerhub
+Create an account at https://hub.docker.com.
+Create repository called preflight-backend.
+Login to your account in terminal
+docker login -u [DOCKERHUB_ACCOUNT]
+
+Push to Dockerhub
+Tag image
+  ⌨️ `docker tag preflight-backend [DOCKERHUB_ACCOUNT]/preflight-backend:latest `
+
+`docker login`
+
+Push image
+⌨️ `docker push [DOCKERHUB_ACCOUNT]/preflight-backend:latest`
+```
+<br>
 <img width="907" height="745" alt="image" src="https://github.com/user-attachments/assets/04e44e4a-55a7-49a4-9f19-1ba0f1a34772" /><br>
 <img width="762" height="552" alt="image" src="https://github.com/user-attachments/assets/ec10c34f-8b25-43f8-acff-f5376724eac9" /><br>
-setting role in datebase in dbeaver <br>
+
+setting role in datebase in dbeaver 
 ```
 solve database error :
-  เปลี่ยน port : ให้ตรงกับ localhost
+  เปลี่ยน port : ให้ตรงกับ localhost ใน env 
   setting : role ให้ทำได้ทุกอย่าง
 
   ลอง npm run dav แล้วลอง get put หรือเปิด localhost:3000 มันน่าจะได้
+```
+#### terminology : 
+```
+Trottle : ทรอเทิล
+```
+
+## Day 9
+[lecture](https://fullstack-68.github.io/lectures/src/T05_pf_frontend/T05.html)
+[Ranking of frontend](https://fullstack-68.github.io/lectures/src/T05_pf_frontend/T05.html)
+note : frontent 
+```
+frontent flamework เราจะใช้กันเป็นส่วนนึงที่ build มาจาก js
+จริงๆแล้วคุณจะสร้าง interactivity ทุกอย่างได้จาก js เฉย โดยการเข้าไป access DOM API document object
+map ของตัว browser API ได้ เรียกว่า การใช้ vanila java script เหมือนกิน ไอตีมไม่ใส่รถ ก็คือ js เพียวๆ
+
+เวลาจะเอา code ของคุณขึ้นไปให้ client ใช้ ไม่ใช้แค่ complie ts แล้วจบเลยเหมือน backend แต่ต้องมีการ build
+ 
+```
+
+terminology :
+```
+foot gun : ยิงปืนใส่เท้าตัวเอง 
+compound : 
+minify 
+bundle 
 ```
 
 =======
@@ -1185,3 +1273,4 @@ comment code <br>
 ```
 ✅ กด Shift + Alt + A
 ```
+<img width="693" height="629" alt="image" src="https://github.com/user-attachments/assets/cad8f0c9-274d-456f-9fa2-f006394b1749" /> <br>
