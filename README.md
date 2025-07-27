@@ -846,7 +846,7 @@ Remove-Item -Recurse -Force db/migration/meta
 #### 4. แล้ว migrate:
 `npm run db:migrate`
 
-### Day 8
+## Day 8
 ### Set up backend <br>
 ----------------------------------------------------------------------------------
 [leature](https://fullstack-68.github.io/lectures/src/T04_pf_backend/T04.html)<br>
@@ -975,7 +975,6 @@ middleware : คือสิ่งที่มันขวางทาง reques
 inspect : 
 ```
 
-### Day 9
 --------------------------------------------------------------<br>
 <img width="354" height="278" alt="image" src="https://github.com/user-attachments/assets/d658aa6e-35c3-43dc-a13e-bb525989c621" /> <br>
 `npm run build` (เวลา run production eviroment คุณไม่ได้ run บน TS คุณ run on Js มันควรจะ)<br>
@@ -1143,8 +1142,98 @@ frontent flamework เราจะใช้กันเป็นส่วนน�
 map ของตัว browser API ได้ เรียกว่า การใช้ vanila java script เหมือนกิน ไอตีมไม่ใส่รถ ก็คือ js เพียวๆ
 
 เวลาจะเอา code ของคุณขึ้นไปให้ client ใช้ ไม่ใช้แค่ complie ts แล้วจบเลยเหมือน backend แต่ต้องมีการ build
- 
 ```
+ใช้ vite เป็น packet ของเรา <br>
+setup frontend :<br>
+`pnpm create vite@latest` <br>
+latest : เป็นตัวสร้าง boiler plate ให้เรา แล้วมันก็บอกให้เอา packet ที่ใหม่ที่สุดมันก็เลยเป็น @latest <br>
+<img width="1373" height="771" alt="image" src="https://github.com/user-attachments/assets/a8a11586-2c98-406b-a8f6-e00b45688043" />
+
+explan : <br>
+```
+  "dependencies": {
+    "@picocss/pico": "^2.1.1", css libary 
+    "axios": "^1.11.0",  ตัว call api 
+    "dayjs": "^1.11.13", ตัวบริหารวันที่
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+```
+<img width="877" height="279" alt="image" src="https://github.com/user-attachments/assets/4bac9ecc-b4ad-45e6-ab35-c72c9e9ee45c" />  <br>
+<img width="887" height="212" alt="image" src="https://github.com/user-attachments/assets/f32a2a29-da68-4fdc-9718-6676a29d91bc" /> <br>
+มันจะฝังตัวเข้าไปใน div แล้ว take over ทำทุกอย่างที่อยู่บนหน้าจอคุณภาษาเขาเรียกว่า entrypoint <br>
+
+test.ts 
+```
+ยิง api เข้าไปหา backend แล้ว backend จะมี field อะไรบางอย่างที่เป็น field ของ todo ที่มันดึงกลับมา
+ดังนั้นเราควรรู้สิ่งที่เรา expact มันควรจะมี shap เป็นอะไรบ้าง
+```
+<img width="1763" height="445" alt="image" src="https://github.com/user-attachments/assets/ef4b7e9c-5228-4d1c-b1f0-d0737bb86aee" /><br>
+```
+web มันมี security อยู่แล้ว
+1. ถ้ายิงไป link ที่ไม่ใช้ origin ของตัวเอง ของเราคือ 5173 แต่จะยิงไปที่ port 3000 มันคนล่ะ origin
+2. แล้ว origin allow ให้คนอื่นที่ไม่ใช่ origin ยิงมาหาเรามั้ย
+ถ้าเกิดเขาไม่ allow เราทำอะไรไม่ได้ อยู่ที่ความใจดี ของ port 3000
+ถ้า port 3000 ไม่ allow cors (cross origin resoure shareing) port 5173 ทำอะไรไม่ได้ 
+
+```
+<img width="1172" height="212" alt="image" src="https://github.com/user-attachments/assets/8f0ebd57-ea3b-488e-8b4a-cd857dd6293e" /><br>
+nvim : editer file in cmd <br>
+ <br>
+<img width="887" height="178" alt="image" src="https://github.com/user-attachments/assets/594cd688-f607-4475-aca6-24bd6822da37" /><br>
+ถ้ามีใครที่มาแล้วไม่ใช่ port 3000 ผมจะไม่ share resoure ให้ false <br>
+<img width="549" height="170" alt="image" src="https://github.com/user-attachments/assets/6704e7c3-7556-4b02-8d58-1b1bf362128d" /><br>
+อันนี้คือยอม<br>
+`ซึ่งถ้าเป็น backend ที่ดีก็ไม่ควรจะยอม คุณจะมาให้ app อื่นมายิง app คุณทำไม ให้เฉพาะ app ที่มาจาก 3000 เท่านั้นถึงจะยอม `
+
+### reverse proxy 
+<img width="815" height="425" alt="image" src="https://github.com/user-attachments/assets/c2bef695-67ee-4c3a-bc15-479e170c721d" /><br>
+```
+vite server : pnpm run dev มันจะสร้าง web server ขึ้นมาหนึ่งอัน
+เมื่อไหร่มี req from 5173 มันจะ serve js and html ให้ auto compile อยู่แล้ว 
+chome รับ file react ไป
+chome exucute สิ่งนี้ต่อ const res = await axios.get<TodoItem[]>("http://localhost:3000/todo");
+มันก็จะวิ่งไปหา root 3000 backend
+
+```
+<img width="791" height="439" alt="image" src="https://github.com/user-attachments/assets/b8e64d8f-b9f2-4c6c-ab92-1fec6de809c9" /><br>
+```
+ถ้าเกิดมีใคร call มาเฉยๆ เราจะวิ่งผ่านไปหา HTML ให้
+แต่อะไรที่ ยิงมาหา / api เดี่ยวมันจะทำการ pocxy ไปหา backend
+```
+<img width="938" height="417" alt="image" src="https://github.com/user-attachments/assets/b58b3f97-3c8f-4030-a0a6-106de492d3fe" /><br>
+```
+vite ต้องมี --host มันถึงจะยอมให้ใช้ pocxy server 
+```
+
+### docker frontend 
+<img width="854" height="564" alt="image" src="https://github.com/user-attachments/assets/01e059c1-f64f-47a6-8f19-45745ae7d105" /><br>
+```
+เราต้องการอะไรที่มัน serve static content อย่างเช่น js html (web server)
+เราะจไม่ใช้ web server ที่มาจาก vite เพราะ web server ที่มาจาก vite มันใช้สำหรับ dev มันจะช้า
+มันจะไม่ cache มันจะทำ load balance ไม่ได้ 
+
+เวลาเราเราจะทำ frontend ไปอยู่ในโลกภายนอกจริงๆ เราควรจะใช้ real web server
+บนโลกดังๆตอนนี้ก็จะมี apachi กับ engine x 
+
+ใช้แทน vite deverlopment server เหมือนเวลา npm run dev มันจะ spin web server ขึ้นมาให้แต่ตอนนี้ 
+พอมันอยู่ใน docker เราจะใช้ engine x 
+
+set up
+1. static content ที่ user จะได้เวลาเขาไป visit web ของเรามันต้องไปอยู่ html folder
+2. reverse proxy server set ผ่าน algorithm ของ engine x
+
+ข้างบนเรียก builder
+ข้างล่างเรียก runner
+
+and setup follow lecture
+```
+<img width="942" height="789" alt="image" src="https://github.com/user-attachments/assets/bc038942-df5f-466b-b945-349ebea8a62f" /><br>
+<br>
+point:<br>
+```
+ไปหาใช้ react ตัวใหม่ๆ use optimistic ,use transition 
+```
+
 
 terminology :
 ```
