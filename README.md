@@ -1362,13 +1362,14 @@ web scraping ก็ใช้ cy ก็ได้นะ หลายคนอา�
 ### terminology 
 ```
 inject : ฉีด
-complicate :
-eteaway
-```
+complicate : ซับซ้อน
+etheway : ออกไป
 By the way : อนึ่ง
 In a way : ในทางหนึ่ง
 Assertions : การยืนยัน
 ```
+
+
 =======
 # 🧠 FullStack68 - Learning Journey
 
