@@ -1342,15 +1342,13 @@ code test เราจะ target กับ code แบบนี้
 <img width="439" height="187" alt="image" src="https://github.com/user-attachments/assets/24cf1cc4-bce8-47ba-b092-1a95e1811b21" /><br>
 <br>
 approch project test: <br>
-<img width="1658" height="727" alt="image" src="https://github.com/user-attachments/assets/3bbfe473-4a36-472b-a725-05e2985a5f60" />
+<img width="1658" height="727" alt="image" src="https://github.com/user-attachments/assets/3bbfe473-4a36-472b-a725-05e2985a5f60" /><br>
 เพิ่ม crypress.config.ts เข้าไป โดยที่ จะ inject .env เข้าไป หรือ inject eviroment<br>
 ผ่านตัว config file (ถ้าคุณจะ test backend แล้วคุณต้องใส่ predentail อะไรเข้าไป <br>
 คุณคงไม่อยากจะ hard code เข้าไปใน test file ปกติเขาจะใส env)
 <br>
 and following slide ... <br>
 <img width="627" height="328" alt="image" src="https://github.com/user-attachments/assets/e138af70-56a7-4aad-8958-246bae2144fd" /><br>
-
-
 <br>
 
 #### quick note :
