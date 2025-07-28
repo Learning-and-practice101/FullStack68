@@ -1298,7 +1298,7 @@ test ด้วย npm run test
 npm run test มาจาก packege.json --> script ( "test": "cypress open")
 ```
 จะได้...<br>
-<img width="983" height="974" alt="image" src="https://github.com/user-attachments/assets/8e726651-1f8c-48b2-895b-93eba8830e95" />
+<img width="983" height="974" alt="image" src="https://github.com/user-attachments/assets/8e726651-1f8c-48b2-895b-93eba8830e95" /><br>
 ```
 use e2e testing 
 ```
@@ -1306,12 +1306,12 @@ use e2e testing
 ```
 spac คือ file 1 file 
 ```
-<img width="223" height="449" alt="image" src="https://github.com/user-attachments/assets/5d06cc7a-f47b-4516-9bb8-9dd63b9e6a9d" />
+<img width="223" height="449" alt="image" src="https://github.com/user-attachments/assets/5d06cc7a-f47b-4516-9bb8-9dd63b9e6a9d" /><br>
 ```
 อะไรที่อยู๋ใน E2E เราสามารถจะเลือกเพื่อให้มันไป Exucute ใน web crypress ได้
 สามารถเปลี่ยน spac ได้
 ```
-<img width="765" height="201" alt="image" src="https://github.com/user-attachments/assets/ea5c4362-b4e6-4b87-a7c9-07df3d5b541d" />
+<img width="765" height="201" alt="image" src="https://github.com/user-attachments/assets/ea5c4362-b4e6-4b87-a7c9-07df3d5b541d" /><br>
 ```
 การ test เขาจะ design API ให้เหมือน ภาษาอังกฤษ 
 
