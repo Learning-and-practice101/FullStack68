@@ -1243,6 +1243,134 @@ minify
 bundle 
 ```
 
+## Day 10
+[lecture testing:](https://fullstack-68.github.io/lectures/src/T06_pf_testing/T06.html#7)<br> 
+testing : <br>
+<img width="648" height="387" alt="image" src="https://github.com/user-attachments/assets/271a9318-80c5-486f-bc5f-049ea475e9b0" /><br>
+```
+test ระบบให้มั่นใจว่า production จะไม่ทำงานพลาด
+ข้างบนน้อยๆ 
+
+ข้างล่างมีความรวมอะไรเยอะๆ 
+```
+<br>
+
+note [ranking test](https://2024.stateofjs.com/en-US/libraries/testing/)<br>
+```
+Jest ro Mocha : จะโดดเด่นใน Unit test พื้นฐาน
+
+crypress : Integration Testing , End-to-End (E2E) Testing 
+note : crypress ก็ build อยู่บน Mocha ถ้าคุณใช้ crypress ก็เหมือนใช้ Mocha ไปด้วยเลย 
+```
+<br>
+
+#### Setting up project testing :<br>
+##### 1
+`npm init es6`<br>
+<br>
+`pnpm install cypress typescript dotenv @tsconfig/node-lts @tsconfig/node-ts @types/node` <br>
+<br>
+`npx cypress install`<br>
+  This will install `Cypress` binary into `$env:LOCALAPPDATA/Cypress` (Windows).<br>
+
+note : pnpm setup <br>
+<img width="647" height="167" alt="image" src="https://github.com/user-attachments/assets/bf2615c3-b62c-4206-acae-f60022a4d04a" /> <br>
+```
+มันจะ install package in note module ถ้าเกิด package บางอันมันมีสิ่งที่เรียกว่า installation script
+หรือ build script มันจะ run ให้คุณ auto ใน npm แต่ว่า pnpm มันไม่ทำอย่างนั้น
+ดูจาก warning คือมันมี build script อะไรบางอย่าง ที่มันต้อง run post installation ด้วย
+ไม่งั้นมันจะ ไม่ work ซึ่ง pnpm มัน disable ตัวนี้ by default ซึ่งเป็นเรื่องที่ดี
+เพราะ ถ้า npm ลง crypress มันจะค้างนาน เพราะว่า build script ของมัน มันไปดาวโหลด executable
+มาอย่างใหญ่เลย
+แต่ pnpm ถ้าคุณอยาก run คุณก็ไป approve เองหรือ manaual เอง 
+
+ก็คือตัวนี้ npx cypress install
+```
+ถ้าอยากรู้ว่าไอ้ตัว crypressอยู่ไหน <br>
+<img width="626" height="205" alt="image" src="https://github.com/user-attachments/assets/570eb935-73da-40ba-876d-252b66468b27" /><br>
+<img width="777" height="595" alt="image" src="https://github.com/user-attachments/assets/f93228ce-0120-4c1a-9a5a-b4c366b76abc" /><br>
+ซึ่ง binary นี้ถ้าคุณเปลี่ยน version มันก็จะ load banary มาให้คุณใหม่เรื่อยๆ ทำให้มันหลาย Gb <br>
+
+##### 2 
+<img width="393" height="274" alt="image" src="https://github.com/user-attachments/assets/bc38254f-3e45-42e3-ae83-a73f86735bc2" /><br>
+```
+test ด้วย npm run test 
+npm run test มาจาก packege.json --> script ( "test": "cypress open")
+```
+จะได้...<br>
+<img width="983" height="974" alt="image" src="https://github.com/user-attachments/assets/8e726651-1f8c-48b2-895b-93eba8830e95" />
+```
+use e2e testing 
+```
+<img width="1002" height="674" alt="image" src="https://github.com/user-attachments/assets/04c3467d-bb7f-4026-b75c-41566f5a4fd5" /><br>
+```
+spac คือ file 1 file 
+```
+<img width="223" height="449" alt="image" src="https://github.com/user-attachments/assets/5d06cc7a-f47b-4516-9bb8-9dd63b9e6a9d" />
+```
+อะไรที่อยู๋ใน E2E เราสามารถจะเลือกเพื่อให้มันไป Exucute ใน web crypress ได้
+สามารถเปลี่ยน spac ได้
+```
+<img width="765" height="201" alt="image" src="https://github.com/user-attachments/assets/ea5c4362-b4e6-4b87-a7c9-07df3d5b541d" />
+```
+การ test เขาจะ design API ให้เหมือน ภาษาอังกฤษ 
+
+describe มันก็มี type definition ไปด้วย behind the scene มันคือ mocha 
+mocha คือ testing flamework แล้วในการทำงาน ของ mocha มันจะ inject definition ของมัน
+เข้าไปใน globle name space ของ javascript ไปเลย เพราะฉนั้นคุณไม่ต้อง import
+ก็คือ automaticlly inject function 
+
+cy : crypress
+```
+<br>
+
+#### code for test 
+<img width="857" height="147" alt="image" src="https://github.com/user-attachments/assets/8a2dab28-9261-4b1f-8966-81e65d8ce75a" /><br>
+```
+check property ตรงกับที่เราอยากได้ไหม
+```
+<br>
+
+<img width="797" height="490" alt="image" src="https://github.com/user-attachments/assets/577d677a-218b-40f6-a209-dbe6db4c85be" /><br>
+<img width="730" height="148" alt="image" src="https://github.com/user-attachments/assets/d9afaabf-df46-41b2-93ae-8c00a7bfd91d" /><br>
+```
+app.tsx --> ใน input เรา จะมี attribute -> data-cy แล้วก็ Input text
+
+code test เราจะ target กับ code แบบนี้ 
+```
+[code test more](https://docs.cypress.io/api/table-of-contents#Actions)<br>
+<img width="439" height="187" alt="image" src="https://github.com/user-attachments/assets/24cf1cc4-bce8-47ba-b092-1a95e1811b21" /><br>
+<br>
+approch project test: <br>
+<img width="1658" height="727" alt="image" src="https://github.com/user-attachments/assets/3bbfe473-4a36-472b-a725-05e2985a5f60" />
+เพิ่ม crypress.config.ts เข้าไป โดยที่ จะ inject .env เข้าไป หรือ inject eviroment<br>
+ผ่านตัว config file (ถ้าคุณจะ test backend แล้วคุณต้องใส่ predentail อะไรเข้าไป <br>
+คุณคงไม่อยากจะ hard code เข้าไปใน test file ปกติเขาจะใส env)
+<br>
+and following slide ... <br>
+<img width="627" height="328" alt="image" src="https://github.com/user-attachments/assets/e138af70-56a7-4aad-8958-246bae2144fd" /><br>
+
+
+<br>
+
+#### quick note :
+```
+ปกติ project test ไม่ต้องแยก folder ก็ได้ สามารถรวมกับ frontend และ backend ได้เลย
+
+cy ที่มันทำได้ดีคือ web site automation tool สำหรับบางคนถ้าอยากใช้ 
+web scraping ก็ใช้ cy ก็ได้นะ หลายคนอาจจะใช้ public thier แต่ cy ก็ดี 
+```
+
+### terminology 
+```
+inject : ฉีด
+complicate :
+eteaway
+```
+By the way : อนึ่ง
+In a way : ในทางหนึ่ง
+Assertions : การยืนยัน
+```
 =======
 # 🧠 FullStack68 - Learning Journey
 
