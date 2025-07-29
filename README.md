@@ -1585,6 +1585,10 @@ git remote set-url origin [REPO_ADDR]
 แล้ว : git commit -m "init"
 แล้วโยนขึ้นgit : git push --set-upstream origin [branch] แนะนำเป็น master
 
+รอบหน้า git push เฉยๆ ก็ได้ ก็คือ git add , git commit -m "init" แล้วก็ git push
+
+ถ้าไฟล์บน github มีการเปลี่ยนแปลงคุณแค่ git pull ดึงมันลงมาในเครื่องคุณ
+
 จากนั้นเข้าไปใน vscode copy file.env --> to be .env.test and run build docker
 docker compose --env-file ./.env.test up -d --force-recreate --build
 อย่าลืมมมมม เปิด program docker 
@@ -1632,7 +1636,7 @@ IMAGE_NAME=commers/preflight-frontend
 <img width="591" height="633" alt="image" src="https://github.com/user-attachments/assets/d191bece-ba6a-4ca2-b023-8b84ceed538e" /><br>
 ทุกครั้งที่คุณ Push มันจะ build ให้เลย ถ้า uncomment ตัวนั้น<br>
 
-
+**pico css color**
 ### terminology : 
 ```
 
