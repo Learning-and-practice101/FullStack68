@@ -1488,7 +1488,7 @@ git clone https://github.com/fullstack-68/pf-deploy.git
 ถ้าอยากเปลี่ยนให้เต็ม (pf-deploy) ตามหลัง
 
 แล้ว
- cp .env.example .env (copy file .env.example มาและตั้งชื่อ .env)
+cp .env.example .env (copy file .env.example มาและตั้งชื่อ .env)
 
 เปลี่ยนข้อมูล .env โดย
 vi .env หรือ nano .env
@@ -1551,6 +1551,91 @@ docker run -it --rm -v ./logs:/home/ubuntu ubuntu /bin/bash (--rm ถ้าอ�
 cd /home/ubuntu/logs
 rm *.* หรือ rm migration.log
 --------------------
+```
+## Day 13 CI/CD
+
+note ci/cd : 
+```
+CI/CD เป็นสิ่งที่เรียกว่า continuous integration และ continuous delivery deployment 
+เป็น Precess ของการ Build test แล้วก็ Deploying code automatic เวลาเปลี่ยน code base
+มันจะ Build test and deploy ได้ เทอมนี้ ทำแค่ Build and Deploy 
+```
+
+### step 
+```
+check docker : docker ps | less -s
+
+Requirement : Need a GitHub repository for your app. (Let's use the pf-frontend app.)
+To use my repo
+git clone https://github.com/fullstack-68/pf-frontend.git
+
+remove-item .git, .github -Force
+
+ทำให้เป็น git repository : git init 
+แล้วมันจะเขียวๆตรงไฟล์ แปลว่าคุณจะต้อง commit มันขึ้น repo
+แต่มันยังไม่ link บน repo ที่อยู่บน github ของผมต้องใช้คำสั่ง remote ด้านล่าง
+
+Other commands
+git remote add origin [link github] (ex.https://github.com/FullstackTypeScript68/CICD-pf-frontend.git)
+git remote set-url origin [REPO_ADDR]
+
+ดูว่าอยู่ใน repo ไหน git : remote -v 
+
+แล้ว : git add .
+แล้ว : git commit -m "init"
+แล้วโยนขึ้นgit : git push --set-upstream origin [branch] แนะนำเป็น master
+
+จากนั้นเข้าไปใน vscode copy file.env --> to be .env.test and run build docker
+docker compose --env-file ./.env.test up -d --force-recreate --build
+อย่าลืมมมมม เปิด program docker 
+```
+<img width="1253" height="667" alt="image" src="https://github.com/user-attachments/assets/da82a2ba-b469-4b54-afc3-f87ac882c3fd" /><br>
+ตัว bese ในการ build docker image แล้วก็ push ขึ้นไป dockerhub อัตโนมัติ:<br>
+
+### create git action : 
+```
+webhook : server ที่ host container ของคุณของ server ภาค cpe
+server นี้จะต้องมีการ pocess docker compose up down pull ให้หน่อย ให้มันถูกที่
+สรุป webhook คือ server มันรออะไรบางอย่างจากภายนอก 
+WEBHOOK_SECRET ไม่อยากให้ใครยิงหาแล้วมัน work 
+
+DISCORD_WEBHOOK for notice
+
+process build to docker hub auto สร้างใน dockerhub generate token 
+DOCKERHUB_USERNAME
+DOCKERHUB_TOKEN
+
+# Repository Secret
+WEBHOOK_SECRET=fs68 
+DISCORD_WEBHOOK=https://discord.com/api/webhooks/1399817598425890860/Nls4M2bp3qEPPy6uFX5klSXJZWjSE0-lROvP2HJk8I4IhDna_sk8iI0NfSFeBGzmLXJg
+DOCKERHUB_USERNAME=commers
+DOCKERHUB_TOKEN=dckr_pat_761H7D4rPTxvjijBC8Y6CuuwUoI
+
+# Repository Variable
+PROJECT_GROUP=g14
+IMAGE_NAME=commers/preflight-frontend
+
+```
+<img width="1412" height="750" alt="image" src="https://github.com/user-attachments/assets/8e88bb15-fb1b-4de5-8b8b-546c384378a4" /><br>
+<br>
+### set git action :<br>
+<img width="538" height="163" alt="image" src="https://github.com/user-attachments/assets/63ce5d92-b947-4939-aa64-8981316cdc33" /><br>
+<img width="970" height="666" alt="image" src="https://github.com/user-attachments/assets/5eec95ff-3fe9-409e-8249-3c53d7728dcb" /><br>
+<img width="986" height="545" alt="image" src="https://github.com/user-attachments/assets/588fd5cd-8932-404b-a41b-6fb6dbf2020b" /><br>
+<img width="1891" height="696" alt="image" src="https://github.com/user-attachments/assets/3cf2c2b8-8bb1-49b9-8ecb-8ff93a438ce1" /><br>
+
+### dog call git action
+```
+หทาสีดำ : Message git action
+หมาสีน้ำตาล : Cpe server 
+```
+<img width="591" height="633" alt="image" src="https://github.com/user-attachments/assets/d191bece-ba6a-4ca2-b023-8b84ceed538e" /><br>
+ทุกครั้งที่คุณ Push มันจะ build ให้เลย ถ้า uncomment ตัวนั้น<br>
+
+
+### terminology : 
+```
+
 ```
 
 ## Day 14 database design
@@ -1653,7 +1738,7 @@ Time series
 <img width="986" height="637" alt="image" src="https://github.com/user-attachments/assets/7187d492-11f9-49c6-a6e8-e2bb17f22253" /><br>
 
 #### what is schema?
-
+ 
 ### terminology :
 ```
 Normalization : ลดความซ้ำซ้อนของข้อมูล หรือในตารางมันมีความซ้ำซ้อนเยอะมันก็จะต้องลดความซ้ำซ้อน
