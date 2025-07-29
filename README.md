@@ -1369,7 +1369,190 @@ In a way : ในทางหนึ่ง
 Assertions : การยืนยัน
 ```
 
+## Day 11 development on Mycomputer
+[lecture](https://fullstack-68.github.io/lectures/src/T07_pf_deploy/T07.html#1)<br>
 
+**follow up slide**
+use powershell for command <br>
+<img width="578" height="419" alt="image" src="https://github.com/user-attachments/assets/59cef15b-2e2c-4469-93ef-eb8d695a7cea" /><br>
+<br>
+<img width="761" height="354" alt="image" src="https://github.com/user-attachments/assets/0ec073bd-0bef-4f39-8b99-d7157f40f886" /><br>
+```
+docker builder prune -a (ลบ cache ของ docker)
+```
+### conclude step : up
+--------------------------------------------------------------------<br>
+```
+drop container
+drop volume 
+drop image
+
+set in folder pf-deploy (.env ) and set carriage return LF 
+(mac , linux use chmod +x ./\_entrypoint/init.sh)
+
+docker compose up -d หรือ docker compose up -d --force-recreate
+
+run port FRONTEND_PORT (localhost:6769)
+```
+<img width="331" height="101" alt="image" src="https://github.com/user-attachments/assets/320a46f6-4dc7-4300-ad56-608a796ceb16" /><br>
+`อย่าลืมเปลี่ยน เป็น ls `
+<img width="718" height="407" alt="image" src="https://github.com/user-attachments/assets/1ff0c4c7-ad92-4c7b-b6f4-4ad4ef014ff0" /><br>
+set passwork <br>
+set carriage return <br>
+<img width="1586" height="159" alt="image" src="https://github.com/user-attachments/assets/f364c6ec-5c8e-4b8a-b339-ebb627efcb2d" /><br>
+ดูว่ามี อะไร run อยู่บ้าง <br>
+<img width="299" height="48" alt="image" src="https://github.com/user-attachments/assets/a6502b8a-13b0-4c6d-a056-3a799804ecfb" /><br>
+ดู logs จาก service ต่างๆ <br>
+<img width="944" height="384" alt="image" src="https://github.com/user-attachments/assets/9e6bcd1f-8a1c-4311-95e6-eed366f7115e" /><br>
+<br>
+สุดท้ายดู migration 
+<img width="1711" height="373" alt="image" src="https://github.com/user-attachments/assets/8cb23dbc-35a1-4cf0-a0aa-76c1a38b0dec" /><br>
+<br>
+<img width="1249" height="626" alt="image" src="https://github.com/user-attachments/assets/a07ed90f-4c3e-486b-a9ec-4726562e869f" /><br>
+--------------------------------------------------------------------<br>
+### conclude step : down 
+--------------------------------------------------------------------<br>
+```
+เข้าไปใน folder ที่มี file docker compose อยู๋มันจะได้รู้ว่าเอาอะไรลง<br>
+
+docker compose down (เอาลง)
+docker volume prune -a (ลบ database)
+
+docker ps -a (ดูไฟล์ว่า run อยู่มั้ย)
+
+remove item pf-deploy-2 -Froce (ลบไฟล์ -Froce เพื่อบังคับลบ)
+```
+--------------------------------------------------------------------<br>
+### conclude step : moment of push some thing new on docker hub
+--------------------------------------------------------------------<br>
+```
+docker compose down (เอาลงก่อน)
+
+docker compose pull (ดึง image มา)
+
+docker compose up -d --force-recreate (เอาขึ้นใหม่)
+```
+--------------------------------------------------------------------<br>
+#### explan docker compose :
+<img width="324" height="219" alt="image" src="https://github.com/user-attachments/assets/b53c9523-e64c-4680-a0b1-5f7eb251c561" /> <br>
+มันรวบรวม docker compose ที่เราเคยทำมาทั้งหมด<br>
+<img width="448" height="42" alt="image" src="https://github.com/user-attachments/assets/dfcc9b82-944d-4ae6-9bcd-85a2aa095a1d" /> <br>
+project name เปลี่ยนไปตามชื่อกลุ่ม<br>
+<img width="425" height="76" alt="image" src="https://github.com/user-attachments/assets/9847ffc8-fbbe-44b9-9454-2edb9f8ab580" /><br>
+ดึงมาจาก backend image name ที่ pull มาจาก dockerhub <br>
+<img width="1387" height="184" alt="image" src="https://github.com/user-attachments/assets/db5f884f-cc6d-43a6-b7ea-a5e9cc59218a" /><br>
+เวลาเรา run backend มันต้องทำ migration ด้วยมันจะได้มีตารางที่ชื่อ todo ขึ้นมาโดยที่เราไม่ต้องไปทำอะไร <br>
+<img width="535" height="78" alt="image" src="https://github.com/user-attachments/assets/84d5d6f1-2755-4073-87db-c71d1ed2add9" /><br>
+ดึงมาจาก frontend image name ที่ pull มาจาก dockerhub <br>
+ <br>
+ทั้งหมดทั้งมวลนี้ทำเพื่อ handle หลายๆ project บน server เดียวกัน <br>
+
+### quick note : 
+```
+เวลาเราทำทุกอย่างให้มันกลายเป็น docker image การ deploy มันจะง่ายมาก
+นี้คือข้อดีของการใช้ docker เพราะมัน portable ค่อนข้างสูง
+
+สามารถซ้อม deploy on local machine ของเราได้ ก่อนจะไป production server
+```
+<br>
+
+### terminology :
+```
+rewarding : ให้รางวัล
+playoff :
+Portable : 
+```
+
+## Day 12 development on MyServer
+[lecture](https://fullstack-68.github.io/lectures/src/T07_pf_deploy/T07.html#1)<br>
+
+### step up:
+```
+ถ้าไม่ได้อยู่ในมหาลัยต้อง เปิด VPN : https://network.cmu.ac.th/wiki/index.php/CMU_GlobalProtect_VPN
+
+ถ้าเข้าได้แล้วให้ ssh เข้าไปใน Linux
+
+step :
+join server : ssh g14@10.10.184.13
+password : g141234
+
+now you can join!!!
+
+learn command :
+ls (ดู Home directory)
+ls -la (ดู Hidden file)
+
+and clone git.
+git clone https://github.com/fullstack-68/pf-deploy.git
+ชื่อ repo ต้องเป้น pf-deploy git clone https://github.com/fullstack-68/pf-deploy.git pf-deploy
+ถ้าอยากเปลี่ยนให้เต็ม (pf-deploy) ตามหลัง
+
+แล้ว
+ cp .env.example .env (copy file .env.example มาและตั้งชื่อ .env)
+
+เปลี่ยนข้อมูล .env โดย
+vi .env หรือ nano .env
+
+เวลา save ctlr + o and enter
+
+ls -la _entrypoint
+แล้ว chmod +x ./\_entrypoint/init.sh
+
+docker compose up -d --force-recreate
+
+แล้ว docker ps 
+หรือ docker ps | less -S
+docker compose logs
+cd logs
+less migration.log
+
+กด q เพื่อ ออก
+
+แล้ว run port ดู 
+ip server : 10.10.184.13:6025
+public ip : fs-g25.ie.cmu.com (มี ssl เรียบร้อย)
+```
+<img width="1177" height="755" alt="image" src="https://github.com/user-attachments/assets/c8184948-f121-4aba-8136-4d9f5677a763" /><br>
+<img width="758" height="411" alt="image" src="https://github.com/user-attachments/assets/0183c6a3-d3ec-4d53-807a-05b56e02a04a" /><br>
+
+### step down:<br>
+```
+docker compose exec -it backend sh (exec (exucute) -it(interactive) backend sh (ใช้ shell ที่อยู่ใน backend))
+พูดง่ายๆคือเข้าไปในเครื่อง docker container ที่เป็น backend แล้วเข้าไปลบไฟล์ เพราะ ใน container ของ
+backend จะมีความเป็น root อยู่
+เข้าไปหา backend เพื่อลบไฟล์แล้วค่อยเอาลง
+
+จากนั้นคุณจะอยู่ใน backend แล้วเข้าไป log แล้ว ลบ directory
+cd logs && rm *
+checl : ls
+cd ..
+exit
+
+check อีกรอบ
+cd logs
+ls
+ls -la
+
+จากนั้นก็สามารถใช้
+docker compose down
+docker volume prune -a
+
+แล้วคุณสามารถลบทุกอย่างได้
+rm -fr pf-deploy/
+ls
+ls -la
+
+done
+
+--------------------
+If you already delete the folder.
+
+docker run -it --rm -v ./logs:/home/ubuntu ubuntu /bin/bash (--rm ถ้าออก ubuntu server จะหายไปด้วย)(./logs(ทำการ mouse volume logs):/home/ubuntu(ให้เข้าไปใน home/ubuntu) ubuntu (run ubuntu server ขึ้นมา) /bin/bash(run bash ให้ผมหน่อย))
+cd /home/ubuntu/logs
+rm *.* หรือ rm migration.log
+--------------------
+
+```
 =======
 # 🧠 FullStack68 - Learning Journey
 
@@ -1490,3 +1673,5 @@ comment code <br>
 ✅ กด Shift + Alt + A
 ```
 <img width="693" height="629" alt="image" src="https://github.com/user-attachments/assets/cad8f0c9-274d-456f-9fa2-f006394b1749" /> <br>
+
+project นี้ถ้ามี ปัญหาเรื่อง authen fail ต้องลบ phAdmin ทิ้ง
