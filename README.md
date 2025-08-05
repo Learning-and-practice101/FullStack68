@@ -759,7 +759,11 @@ sql : <br>
 <br>
 
 conclude : debug 
-  - เปลี่ยน port 5433:5432 --> set up permission for appuser --> npm run db:push
+  - เปลี่ยน port 5433:5432 --> set up permission for appuser --> npm run db:push<br>
+<br>
+<img width="816" height="272" alt="image" src="https://github.com/user-attachments/assets/3abc2ee7-795e-4734-9265-3cc21adc7621" /><br>
+ถ้าเจอปัญหา docker compose up -d แล้วไม่ขึ้นให้ ลบ cache network ออก แล้ว docker compose up -d ใหม่<br>
+<br>
 #### terminology :
 ```
 what ever : อะไรก็ตาม 
@@ -771,7 +775,7 @@ transparent : โปร่งใส
 adopt : รับเลี้ยง
 extract
 ```
-#### conclude : day 5 <br>
+#### conclude : day 6 <br>
   - Database user management ORM
   - อธิบาย Docker container
   - Setup 
