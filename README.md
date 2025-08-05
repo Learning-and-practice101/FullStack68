@@ -769,12 +769,14 @@ transparent : โปร่งใส
 adopt : รับเลี้ยง
 extract
 ```
-#### conclude : day 5 <br>
+#### conclude : day 6 <br>
   - Database user management ORM
   - อธิบาย Docker container
   - Setup 
   - Debug database authen faild 
 <br>
+<img width="816" height="272" alt="image" src="https://github.com/user-attachments/assets/8472b296-0a91-499c-a41c-4903835ba794" /><br>
+ถ้าเจอปัญหาการ npm run db:push แล้วไม่ขึ้น ให้ลบ cache ของ network ออกก่อน <br>
 🔍 สรุปว่าโปรเจกต์นี้ day 6 <br>
 เป็นโปรเจกต์ backend (หรือ full-stack) ที่เขียนด้วย TypeScript และใช้ Drizzle ORM สำหรับจัดการฐานข้อมูล โดยใช้ Docker และ pnpm ในการจัดการ environment และ dependency <br>
 ✅ การจัดการ Database ด้วย TypeScript (ผ่าน drizzle-orm) <br>
